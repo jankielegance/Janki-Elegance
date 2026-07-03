@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "name": "Rang-E-Malka Premium Farsi Set",
+      "category": "3 Piece Suits",
+      "price": 2499,
+      "compare_at_price": 3299,
+      "image": "/images/placeholder-1.svg",
+      "description": "Premium farsi suit set with intricate detailing. Soft, breathable and festive-ready.",
+      "sold_out": false,
+      "featured": true
+    },
+    {
+      "name": "Banarasi Silk Saree — Maroon",
+      "category": "Sarees",
+      "price": 3299,
+      "compare_at_price": 4199,
+      "image": "/images/placeholder-4.svg",
+      "description": "Handwoven Banarasi silk saree with a rich gold zari border. Comes with unstitched blouse piece.",
+      "sold_out": false,
+      "featured": true
+    },
+    {
+      "name": "Hand-Block Cotton Kurti",
+      "category": "Cotton Kurtis",
+      "price": 899,
+      "compare_at_price": 1199,
+      "image": "/images/placeholder-3.svg",
+      "description": "Breathable pure-cotton kurti with traditional hand-block print. Everyday elegance.",
+      "sold_out": false,
+      "featured": false
+    },
+    {
+      "name": "Floral Co-ord Set",
+      "category": "Co-ord Sets",
+      "price": 1599,
+      "compare_at_price": 1999,
+      "image": "/images/placeholder-2.svg",
+      "description": "Coordinated top and bottom in a soft floral print. Relaxed fit, all-day comfort.",
+      "sold_out": false,
+      "featured": false
+    },
+    {
+      "name": "Festive Lehenga — Wine & Gold",
+      "category": "Lehengas",
+      "price": 5999,
+      "compare_at_price": 7499,
+      "image": "/images/placeholder-1.svg",
+      "description": "Flared festive lehenga with gold embroidery, matching choli and dupatta.",
+      "sold_out": false,
+      "featured": true
+    },
+    {
+      "name": "Frock Kurti — Teal",
+      "category": "Frock Kurtis",
+      "price": 1099,
+      "compare_at_price": 1399,
+      "image": "/images/placeholder-3.svg",
+      "description": "Flared frock-style kurti with a flattering silhouette and subtle thread work.",
+      "sold_out": false,
+      "featured": false
+    },
+    {
+      "name": "Palazzo Pants — Ivory",
+      "category": "Palazzo Pants",
+      "price": 699,
+      "compare_at_price": 899,
+      "image": "/images/placeholder-5.svg",
+      "description": "Wide-leg palazzo pants in soft rayon. Pairs beautifully with kurtis and tops.",
+      "sold_out": false,
+      "featured": false
+    },
+    {
+      "name": "Assamese Mekhela Sador",
+      "category": "Mekhela Sador",
+      "price": 2799,
+      "compare_at_price": 3499,
+      "image": "/images/placeholder-2.svg",
+      "description": "Traditional Mekhela Sador with woven motifs. A timeless drape for festive occasions.",
+      "sold_out": false,
+      "featured": true
+    },
+    {
+      "name": "Kids Ethnic Set",
+      "category": "Kids Wear",
+      "price": 1199,
+      "compare_at_price": 1499,
+      "image": "/images/placeholder-4.svg",
+      "description": "Adorable festive ethnic set for kids. Soft fabric, easy to wear.",
+      "sold_out": true,
+      "featured": false
+    },
+    {
+      "name": "Kundan Jewellery Set",
+      "category": "Artificial Jewellery",
+      "price": 1299,
+      "compare_at_price": 1799,
+      "image": "/images/placeholder-1.svg",
+      "description": "Statement kundan necklace set with matching earrings. Lightweight and elegant.",
+      "sold_out": false,
+      "featured": false
+    },
+    {
+      "name": "Indo-Western Draped Gown",
+      "category": "Indo-Western",
+      "price": 3499,
+      "compare_at_price": 4499,
+      "image": "/images/placeholder-6.svg",
+      "description": "Contemporary indo-western draped gown that blends tradition with modern style.",
+      "sold_out": false,
+      "featured": true
+    },
+    {
+      "name": "Unstitched Suit Fabric — 3 pc",
+      "category": "Suit Fabric",
+      "price": 1399,
+      "compare_at_price": 1799,
+      "image": "/images/placeholder-5.svg",
+      "description": "Unstitched 3-piece suit fabric set: top, bottom and dupatta. Ready to tailor.",
+      "sold_out": false,
+      "featured": false
+    }
+  ]
+}
