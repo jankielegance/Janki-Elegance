@@ -1,11 +1,15 @@
 # Decap CMS configuration — the owner-only Catalog Manager.
 #
-# backend: git-gateway works together with Netlify Identity so the owner
-# logs in with an email + password (you invite them from the Netlify dashboard).
-# If you ever switch hosting, see README for the GitHub-backend alternative.
+# GitHub backend: the owner logs in with a GitHub account (must be a
+# collaborator on this repo). Login is completed by your OWN Cloudflare
+# Worker OAuth relay — so this does NOT depend on Netlify Identity/Git
+# Gateway (which Netlify has deprecated). See README for the 15-min setup.
 backend:
-  name: git-gateway
+  name: github
+  repo: jankielegance/Janki-Elegance
   branch: website-base-design-prototype   # change to "main" once you merge
+  # 👇 Replace with your deployed Cloudflare Worker URL (no trailing slash).
+  base_url: https://REPLACE-WITH-YOUR-WORKER.workers.dev
 
 # Where uploaded product photos are stored in the repo, and how the
 # site refers to them. media_folder = on disk; public_folder = in the URL.

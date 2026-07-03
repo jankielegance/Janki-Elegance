@@ -146,15 +146,3 @@ document.addEventListener("DOMContentLoaded", () => {
   wireNav();
   loadProducts();
 });
-
-/* Netlify Identity: after the owner accepts an invite / logs in,
-   send them straight to the admin panel. */
-if (window.netlifyIdentity) {
-  window.netlifyIdentity.on("init", (user) => {
-    if (!user) {
-      window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
-      });
-    }
-  });
-}

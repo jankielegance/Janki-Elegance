@@ -53,19 +53,54 @@ I tidied the spellings for the storefront (e.g. "Cod Sets" → "Co-ord Sets", "P
 
 ---
 
-## 🔑 Giving the owner the "Add Catalog" login
+## 🔑 The "Add Catalog" login (GitHub + your own Cloudflare Worker)
 
-The admin panel uses **Netlify Identity** so the owner logs in with an email + password.
+The admin panel uses the **GitHub backend**: whoever manages the catalog logs in
+with a **GitHub account** and must be a **collaborator** on this repo. Login is
+completed by a tiny **Cloudflare Worker** you deploy once — so it does **not**
+depend on Netlify Identity/Git Gateway (which Netlify has deprecated). Even if
+Netlify removes every auth feature, this login keeps working.
 
-1. In Netlify: **Site configuration → Identity → Enable Identity**.
-2. Under Identity → **Registration**, set it to **Invite only** (so only people you invite can log in).
-3. Under Identity → **Services → Git Gateway**, click **Enable Git Gateway**.
-4. Click **Invite users** and enter the owner's email.
-5. The owner gets an email → sets a password → can now log in at `yoursite.netlify.app/admin` and use **Catalog → Products** to manage the store.
+> **Who can log in:** add the shop owner as a collaborator at
+> **github.com/jankielegance/Janki-Elegance → Settings → Collaborators**, or just
+> manage the catalog yourself with your own GitHub account.
 
-Customers never see any of this — they only see the storefront and the Buy buttons.
+### One-time setup (~15 min)
 
-> **Note on logins:** Netlify Identity / Git Gateway is the simplest path and works today. If you'd prefer a more future-proof setup, the admin can instead use the **GitHub backend** (or the drop-in **Sveltia CMS**). Ask me and I'll switch `admin/config.yml` over.
+**1. Deploy the auth Worker (Cloudflare — free)**
+- Sign up at [cloudflare.com](https://www.cloudflare.com) (free).
+- Deploy **sveltia-cms-auth**: open <https://github.com/sveltia/sveltia-cms-auth>
+  and use its **Deploy to Cloudflare** button (or clone it and run `npx wrangler deploy`).
+- Copy the resulting Worker URL, e.g. `https://sveltia-cms-auth.<your-subdomain>.workers.dev`.
+
+**2. Register a GitHub OAuth App**
+- Go to <https://github.com/settings/applications/new>.
+- **Homepage URL:** your site URL (e.g. `https://janki-elegance.netlify.app`).
+- **Authorization callback URL:** `<YOUR_WORKER_URL>/callback`
+  (e.g. `https://sveltia-cms-auth.<your-subdomain>.workers.dev/callback`).
+- Register, then copy the **Client ID** and generate a **Client Secret**.
+
+**3. Give the Worker its secrets**
+- In the Cloudflare dashboard → your Worker → **Settings → Variables**, add:
+  - `GITHUB_CLIENT_ID` — the Client ID from step 2
+  - `GITHUB_CLIENT_SECRET` — the Client Secret (click **Encrypt**)
+  - `ALLOWED_DOMAINS` *(optional but recommended)* — your site hostname,
+    e.g. `janki-elegance.netlify.app` (locks the Worker to your site only)
+- Save & deploy.
+
+**4. Point the CMS at your Worker**
+- In **`admin/config.yml`**, set `base_url` to your Worker URL (no trailing slash):
+  ```yaml
+  base_url: https://sveltia-cms-auth.<your-subdomain>.workers.dev
+  ```
+- Also confirm `repo:` and `branch:` are correct (branch should become `main` after you merge).
+- Commit & push.
+
+**Done.** Visit `yoursite.netlify.app/admin` → click **Login with GitHub** → you land in
+**Catalog → Products**. Customers never see any of this — only the storefront and Buy buttons.
+
+> **Tip:** The same Worker works with the drop-in **Sveltia CMS** too, if you ever want to
+> swap `admin/index.html`'s script over — it reads this exact `config.yml`.
 
 ---
 
@@ -78,4 +113,4 @@ cd Janki-Elegance
 python3 -m http.server 8080
 ```
 
-Then open **http://localhost:8080**. (The `/admin` panel only fully works once deployed to Netlify with Identity enabled.)
+Then open **http://localhost:8080**. (The `/admin` login only works once deployed, since the GitHub OAuth callback points at your live Worker + site URL — not `localhost`.)
