@@ -1,0 +1,59 @@
+# Decap CMS configuration — the owner-only Catalog Manager.
+#
+# backend: git-gateway works together with Netlify Identity so the owner
+# logs in with an email + password (you invite them from the Netlify dashboard).
+# If you ever switch hosting, see README for the GitHub-backend alternative.
+backend:
+  name: git-gateway
+  branch: website-base-design-prototype   # change to "main" once you merge
+
+# Where uploaded product photos are stored in the repo, and how the
+# site refers to them. media_folder = on disk; public_folder = in the URL.
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Friendly UI labels
+site_url: /
+display_url: /
+logo_url: /images/placeholder-1.svg
+
+collections:
+  - name: "catalog"
+    label: "Catalog"
+    files:
+      - name: "products"
+        label: "Products"
+        file: "content/products.json"
+        description: "Add, edit, or remove the items shown on your store."
+        editor:
+          preview: false
+        fields:
+          - name: "products"
+            label: "Products"
+            label_singular: "Product"
+            widget: "list"
+            summary: "{{fields.name}} — ₹{{fields.price}}"
+            fields:
+              - { name: "name", label: "Product name", widget: "string" }
+              - name: "category"
+                label: "Category"
+                widget: "select"
+                options:
+                  - "Sarees"
+                  - "Cotton Kurtis"
+                  - "Co-ord Sets"
+                  - "3 Piece Suits"
+                  - "Frock Kurtis"
+                  - "Palazzo Pants"
+                  - "Mekhela Sador"
+                  - "Kids Wear"
+                  - "Artificial Jewellery"
+                  - "Lehengas"
+                  - "Indo-Western"
+                  - "Suit Fabric"
+              - { name: "price", label: "Price (₹)", widget: "number", value_type: "int", min: 0 }
+              - { name: "compare_at_price", label: "Original price (₹) — optional, shows a strike-through 'Sale'", widget: "number", value_type: "int", min: 0, required: false }
+              - { name: "image", label: "Product photo", widget: "image", required: false, hint: "Upload a portrait (tall) photo for best results." }
+              - { name: "description", label: "Description", widget: "text", required: false }
+              - { name: "sold_out", label: "Sold out?", widget: "boolean", default: false, required: false }
+              - { name: "featured", label: "Featured?", widget: "boolean", default: false, required: false }
