@@ -7,7 +7,7 @@
 backend:
   name: github
   repo: jankielegance/Janki-Elegance
-  branch: website-base-design-prototype   # change to "main" once you merge
+  branch: main
   # 👇 Replace with your deployed Cloudflare Worker URL (no trailing slash).
   base_url: https://REPLACE-WITH-YOUR-WORKER.workers.dev
 
