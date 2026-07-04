@@ -119,6 +119,16 @@
       "description": "Unstitched 3-piece suit fabric set: top, bottom and dupatta. Ready to tailor.",
       "sold_out": false,
       "featured": false
+    },
+    {
+      "sold_out": false,
+      "featured": false,
+      "name": "Deeksha Srivastav",
+      "category": "Kids Wear",
+      "price": 599,
+      "compare_at_price": 10015,
+      "image": "/images/uploads/img_1341.jpg",
+      "description": "Low quality kid wear cloth"
     }
   ]
 }
