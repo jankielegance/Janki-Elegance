@@ -8,8 +8,8 @@ backend:
   name: github
   repo: jankielegance/Janki-Elegance
   branch: main
-  # 👇 Replace with your deployed Cloudflare Worker URL (no trailing slash).
-  base_url: https://REPLACE-WITH-YOUR-WORKER.workers.dev
+  # Cloudflare Worker OAuth relay (no trailing slash).
+  base_url: https://sveltia-cms-auth.jankielegance.workers.dev
 
 # Where uploaded product photos are stored in the repo, and how the
 # site refers to them. media_folder = on disk; public_folder = in the URL.
