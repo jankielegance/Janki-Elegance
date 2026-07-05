@@ -249,7 +249,11 @@ em { font-style: italic; }
   grid-template-columns: repeat(4, 1fr);
   gap: 1.8rem 1.4rem;
 }
-.product-card { display: flex; flex-direction: column; opacity: 0; transform: translateY(14px); }
+.product-card {
+  display: flex; flex-direction: column;
+  color: inherit; text-decoration: none;
+  opacity: 0; transform: translateY(14px);
+}
 .product-card.in { animation: rise 0.5s ease forwards; }
 @keyframes rise { to { opacity: 1; transform: none; } }
 
@@ -270,25 +274,45 @@ em { font-style: italic; }
 .badge {
   position: absolute;
   top: 0.7rem; left: 0.7rem;
-  background: var(--gold);
+  background: var(--wine);
   color: #fff;
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.55rem;
-  border-radius: 2px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
 }
 .badge.soldout { background: var(--espresso); }
 
-.product-info { padding: 0.9rem 0.2rem 0; display: flex; flex-direction: column; flex: 1; }
-.product-cat { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.2rem; }
-.product-name { font-family: "Cormorant Garamond", serif; font-size: 1.35rem; font-weight: 600; line-height: 1.2; margin: 0 0 0.5rem; color: var(--espresso); }
-.product-price { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.9rem; }
+.product-info { padding: 0.9rem 0.4rem 0; display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; }
+.product-name { font-family: "Cormorant Garamond", serif; font-size: 1.3rem; font-weight: 600; line-height: 1.2; margin: 0 0 0.45rem; color: var(--espresso); }
+.product-card:hover .product-name { color: var(--wine); }
+.product-price { display: flex; align-items: baseline; gap: 0.5rem; }
 .price-now { font-size: 1.05rem; font-weight: 500; color: var(--wine); }
 .price-was { font-size: 0.85rem; color: var(--muted); text-decoration: line-through; }
-.product-info .btn-wine { margin-top: auto; }
 
 .empty-state { text-align: center; color: var(--muted); padding: 3rem 0; }
+
+/* Category sections (home) */
+.cat-section { margin-bottom: 3.8rem; }
+.cat-section-head { text-align: center; margin-bottom: 1.6rem; }
+.cat-title { font-family: "Cormorant Garamond", serif; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 600; color: var(--wine); margin: 0; }
+.shop-more-wrap { text-align: center; margin-top: 2rem; }
+.btn-shopmore { background: var(--wine); color: var(--ivory); border: none; }
+.btn-shopmore:hover { background: var(--wine-deep); }
+
+/* Collection view head */
+.collection-head { text-align: center; margin-bottom: 2.4rem; }
+.link-back {
+  background: none; border: none; cursor: pointer;
+  color: var(--wine); font-family: "Jost", sans-serif;
+  font-size: 0.82rem; letter-spacing: 0.06em;
+  display: inline-block; margin-bottom: 0.8rem;
+  padding: 0.3rem 0.2rem;
+}
+.link-back:hover { text-decoration: underline; }
+.collection-title { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--wine); }
+.collection-count { color: var(--muted); font-size: 0.9rem; margin: 0.3rem 0 0; }
 
 /* Footer */
 .site-footer { background: var(--wine-deep); color: var(--ivory-2); margin-top: 2rem; }
@@ -336,4 +360,86 @@ em { font-style: italic; }
 @media (max-width: 420px) {
   .product-grid { grid-template-columns: 1fr 1fr; }
   .product-name { font-size: 1.15rem; }
+}
+
+/* ============================================================
+   Product detail page
+   ============================================================ */
+.product-page { max-width: var(--maxw); margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+.pd-loading { padding: 4rem 0; text-align: center; color: var(--muted); }
+
+.breadcrumb { font-size: 0.82rem; color: var(--muted); margin: 0.5rem 0 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.breadcrumb a { color: var(--muted); }
+.breadcrumb a:hover { color: var(--wine); }
+.breadcrumb .current { color: var(--espresso); }
+
+.pd-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+
+/* Gallery */
+.pd-main { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--ivory-2); }
+.pd-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pd-thumbs { display: flex; gap: 0.7rem; margin-top: 0.8rem; flex-wrap: wrap; }
+.pd-thumb { width: 72px; aspect-ratio: 4 / 5; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; cursor: pointer; background: none; }
+.pd-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pd-thumb.active { border-color: var(--wine); }
+
+/* Info */
+.pd-info { padding-top: 0.5rem; }
+.pd-name { font-family: "Cormorant Garamond", serif; font-size: clamp(1.9rem, 3.5vw, 2.7rem); color: var(--espresso); line-height: 1.1; margin: 0 0 0.8rem; }
+.pd-rating { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+.stars { letter-spacing: 2px; }
+.star { color: var(--line); font-size: 1.05rem; }
+.star.on { color: var(--gold); }
+.pd-reviews { font-size: 0.86rem; color: var(--muted); }
+.pd-price { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1.8rem; }
+.pd-price .price-now { font-size: 1.6rem; }
+.pd-price .price-was { font-size: 1rem; }
+.price-off { font-size: 0.82rem; color: #fff; background: var(--gold); padding: 0.15rem 0.5rem; border-radius: 999px; }
+
+.pd-sizes { margin-bottom: 1.8rem; }
+.pd-sizes-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.7rem; }
+.pd-label { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78rem; color: var(--espresso); }
+.size-chart-link { background: none; border: none; cursor: pointer; color: var(--wine); font-family: "Jost", sans-serif; font-size: 0.82rem; }
+.size-chart-link:hover { text-decoration: underline; }
+.size-options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.size-chip {
+  min-width: 46px; padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line); background: transparent;
+  font-family: "Jost", sans-serif; font-size: 0.85rem; color: var(--espresso);
+  border-radius: var(--radius); cursor: pointer; transition: all 0.15s;
+}
+.size-chip:hover { border-color: var(--gold); }
+.size-chip.selected { background: var(--wine); color: var(--ivory); border-color: var(--wine); }
+
+.pd-actions { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.2rem; }
+.btn-ig { background: transparent; color: var(--wine); border: 1px solid var(--wine); width: 100%; text-align: center; }
+.btn-ig:hover { background: var(--wine); color: var(--ivory); }
+.pd-wa { width: 100%; text-align: center; }
+
+.pd-desc { border-top: 1px solid var(--line); padding-top: 1.6rem; }
+.pd-desc h2 { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; color: var(--wine); margin: 0 0 0.6rem; }
+.pd-desc p { margin: 0; color: var(--espresso); }
+
+.pd-notfound { text-align: center; padding: 4rem 0; }
+.pd-notfound h1 { font-family: "Cormorant Garamond", serif; color: var(--wine); }
+.pd-notfound .btn { margin-top: 1rem; }
+
+/* Size chart modal */
+.modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1.5rem; }
+.modal[hidden] { display: none; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(43, 33, 24, 0.55); }
+.modal-box { position: relative; z-index: 1; background: var(--ivory); border-radius: 8px; max-width: 560px; width: 100%; max-height: 85vh; overflow: auto; padding: 2rem 1.8rem; box-shadow: var(--shadow); }
+.modal-close { position: absolute; top: 0.7rem; right: 1rem; background: none; border: none; font-size: 1.8rem; line-height: 1; cursor: pointer; color: var(--muted); }
+.modal-close:hover { color: var(--wine); }
+.modal-title { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; color: var(--wine); margin: 0 0 1rem; text-align: center; }
+.table-scroll { overflow-x: auto; }
+.size-chart { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.size-chart th, .size-chart td { border: 1px solid var(--line); padding: 0.5rem 0.6rem; text-align: center; }
+.size-chart thead th { background: var(--wine); color: var(--ivory); font-weight: 500; }
+.size-chart tbody tr:nth-child(even) { background: var(--ivory-2); }
+.size-chart-note { font-size: 0.8rem; color: var(--muted); margin: 0.9rem 0 0; text-align: center; }
+
+@media (max-width: 780px) {
+  .pd-layout { grid-template-columns: 1fr; gap: 1.6rem; }
+  .pd-main { max-width: 460px; margin: 0 auto; width: 100%; }
 }
