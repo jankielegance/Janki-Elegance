@@ -97,7 +97,7 @@
     </section>
 
     <section class="catalog-section" id="catalog">
-      <div class="section-head">
+      <div class="section-head" id="catalogHead">
         <p class="section-eyebrow">Our Collection</p>
         <h2 class="section-title">Shop by Category</h2>
       </div>
@@ -106,10 +106,21 @@
         <!-- category chips injected by JS -->
       </div>
 
-      <div class="product-grid" id="productGrid" aria-live="polite">
-        <!-- products injected by JS -->
+      <!-- Home: a preview row per category with a Shop More button -->
+      <div id="homeView" aria-live="polite">
+        <!-- category sections injected by JS -->
       </div>
-      <p class="empty-state" id="emptyState" hidden>No items in this category yet — check back soon.</p>
+
+      <!-- Collection: full listing of one category / search results -->
+      <div id="collectionView" hidden aria-live="polite">
+        <div class="collection-head">
+          <button class="link-back" id="backToHome" type="button">&#8249; Back to all</button>
+          <h2 class="collection-title" id="collectionTitle"></h2>
+          <p class="collection-count" id="collectionCount"></p>
+        </div>
+        <div class="product-grid" id="collectionGrid"></div>
+        <p class="empty-state" id="emptyState" hidden></p>
+      </div>
     </section>
   </main>
 

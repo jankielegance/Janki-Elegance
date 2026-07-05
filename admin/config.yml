@@ -57,7 +57,22 @@ collections:
                   - "Suit Fabric"
               - { name: "price", label: "Price (₹)", widget: "number", value_type: "int", min: 0 }
               - { name: "compare_at_price", label: "Original price (₹) — optional, shows a strike-through 'Sale'", widget: "number", value_type: "int", min: 0, required: false }
-              - { name: "image", label: "Product photo", widget: "image", required: false, hint: "Upload a portrait (tall) photo for best results." }
+              - { name: "image", label: "Main photo (shown on cards)", widget: "image", required: false, hint: "Upload a portrait (tall) photo for best results." }
+              - name: "images"
+                label: "Gallery photos (product page)"
+                widget: "list"
+                required: false
+                field: { name: "photo", label: "Photo", widget: "image" }
+                hint: "Add multiple photos shown on the product detail page. The first one is used as the main image if the field above is empty."
+              - name: "sizes"
+                label: "Available sizes"
+                widget: "select"
+                multiple: true
+                required: false
+                default: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"]
+                options: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "Free Size", "Unstitched", "2-3Y", "4-5Y", "6-7Y", "8-9Y"]
+              - { name: "rating", label: "Rating (0–5) — optional", widget: "number", value_type: "float", min: 0, max: 5, step: 0.1, required: false }
+              - { name: "reviews", label: "Number of reviews — optional", widget: "number", value_type: "int", min: 0, required: false }
               - { name: "description", label: "Description", widget: "text", required: false }
               - { name: "sold_out", label: "Sold out?", widget: "boolean", default: false, required: false }
               - { name: "featured", label: "Featured?", widget: "boolean", default: false, required: false }
