@@ -4,8 +4,8 @@
    WhatsApp number must include country code, no "+" or spaces.
    Example for India: "919876543210"
    ============================================================ */
-const WHATSAPP_NUMBER = "123456678";          // placeholder — change me
-const INSTAGRAM_HANDLE = "janakielegance";    // placeholder — change me
+const WHATSAPP_NUMBER = "6002674720";          // 6002674720
+const INSTAGRAM_HANDLE = "janki.elegance";     // instagram.com/janki.elegance
 
 /* Canonical category order shown in the filter bar.
    These must match the category names used in content/products.json
@@ -36,6 +36,7 @@ function whatsappLink(productName) {
 
 let allProducts = [];
 let activeCat = "all";
+let searchQuery = "";
 
 async function loadProducts() {
   try {
@@ -64,6 +65,7 @@ function buildFilters() {
     btn.setAttribute("role", "tab");
     btn.addEventListener("click", () => {
       activeCat = cat;
+      clearSearch();
       buildFilters();
       render();
       document.getElementById("catalog").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -72,13 +74,29 @@ function buildFilters() {
   });
 }
 
+function getVisibleProducts() {
+  if (searchQuery) {
+    return allProducts.filter((p) =>
+      [p.name, p.category, p.description].some((f) =>
+        String(f || "").toLowerCase().includes(searchQuery)
+      )
+    );
+  }
+  return activeCat === "all" ? allProducts : allProducts.filter((p) => p.category === activeCat);
+}
+
 function render() {
   const grid = document.getElementById("productGrid");
   const empty = document.getElementById("emptyState");
-  const items = activeCat === "all" ? allProducts : allProducts.filter((p) => p.category === activeCat);
+  const items = getVisibleProducts();
 
   grid.innerHTML = "";
   empty.hidden = items.length > 0;
+  if (items.length === 0) {
+    empty.textContent = searchQuery
+      ? `No results for “${searchQuery}”. Try a different search.`
+      : "No items in this category yet — check back soon.";
+  }
 
   items.forEach((p, i) => {
     const card = document.createElement("article");
@@ -123,6 +141,7 @@ function wireNav() {
   document.querySelectorAll(".main-nav a[data-cat]").forEach((link) => {
     link.addEventListener("click", () => {
       activeCat = link.dataset.cat;
+      clearSearch();
       buildFilters();
       render();
       document.getElementById("mainNav").classList.remove("open");
@@ -136,6 +155,90 @@ function wireNav() {
   });
 }
 
+/* Search: filter products by name / category / description */
+function clearSearch() {
+  searchQuery = "";
+  const input = document.getElementById("searchInput");
+  if (input) input.value = "";
+}
+
+function wireSearch() {
+  const toggle = document.getElementById("searchToggle");
+  const bar = document.getElementById("searchBar");
+  const input = document.getElementById("searchInput");
+  const closeBtn = document.getElementById("searchClose");
+  if (!toggle || !bar || !input) return;
+
+  function openBar() {
+    bar.hidden = false;
+    toggle.setAttribute("aria-expanded", "true");
+    input.focus();
+  }
+  function closeBar() {
+    bar.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+    if (searchQuery) { clearSearch(); buildFilters(); render(); }
+  }
+  toggle.addEventListener("click", () => { bar.hidden ? openBar() : closeBar(); });
+  if (closeBtn) closeBtn.addEventListener("click", closeBar);
+  input.addEventListener("input", () => {
+    const wasEmpty = !searchQuery;
+    searchQuery = input.value.trim().toLowerCase();
+    if (searchQuery) activeCat = "all";
+    buildFilters();
+    render();
+    if (wasEmpty && searchQuery) {
+      document.getElementById("catalog").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+  input.addEventListener("keydown", (e) => { if (e.key === "Escape") closeBar(); });
+}
+
+/* Hero slideshow: auto-rotate every 5s, dots + arrows, pause on hover */
+function wireSlider() {
+  const slider = document.getElementById("heroSlider");
+  const dotsWrap = document.getElementById("sliderDots");
+  if (!slider || !dotsWrap) return;
+  const slides = Array.from(slider.querySelectorAll(".slide"));
+  if (slides.length <= 1) return;
+
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const INTERVAL = 5000;
+  let idx = 0;
+  let timer = null;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => { go(i); restart(); });
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function go(n) {
+    slides[idx].classList.remove("is-active");
+    dots[idx].classList.remove("active");
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add("is-active");
+    dots[idx].classList.add("active");
+  }
+  function start() { if (!prefersReduced && !timer) timer = setInterval(() => go(idx + 1), INTERVAL); }
+  function stop() { clearInterval(timer); timer = null; }
+  function restart() { stop(); start(); }
+
+  const prevBtn = document.getElementById("slidePrev");
+  const nextBtn = document.getElementById("slideNext");
+  if (prevBtn) prevBtn.addEventListener("click", () => { go(idx - 1); restart(); });
+  if (nextBtn) nextBtn.addEventListener("click", () => { go(idx + 1); restart(); });
+
+  slider.addEventListener("mouseenter", stop);
+  slider.addEventListener("mouseleave", start);
+
+  start();
+}
+
 function wireStatic() {
   document.getElementById("footerWhatsapp").href = whatsappLink("");
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -144,5 +247,7 @@ function wireStatic() {
 document.addEventListener("DOMContentLoaded", () => {
   wireStatic();
   wireNav();
+  wireSearch();
+  wireSlider();
   loadProducts();
 });

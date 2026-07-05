@@ -27,19 +27,73 @@
         <a href="#catalog" data-cat="Cotton Kurtis">Kurtis</a>
         <a href="#catalog" data-cat="Artificial Jewellery">Jewellery</a>
       </nav>
-      <a class="ig-link" href="https://instagram.com/janakielegance" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      <button class="icon-btn search-toggle" id="searchToggle" aria-label="Search" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line>
+        </svg>
+      </button>
+      <a class="ig-link" href="https://www.instagram.com/janki.elegance/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+    </div>
+    <div class="search-bar" id="searchBar" hidden>
+      <div class="search-bar-inner">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" class="search-bar-icon">
+          <circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line>
+        </svg>
+        <input type="search" id="searchInput" placeholder="Search sarees, kurtis, lehengas…" aria-label="Search products" autocomplete="off" />
+        <button class="search-close" id="searchClose" aria-label="Close search">&times;</button>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero" aria-label="Welcome">
-      <div class="hero-bg" role="img" aria-label="Janki Elegance banner"></div>
-      <div class="hero-content">
-        <p class="hero-eyebrow">Handpicked Ethnic Wear</p>
-        <h1 class="hero-title">Drape yourself in<br /><em>timeless elegance</em></h1>
-        <p class="hero-sub">Sarees, lehengas, kurtis & more — curated for every celebration.</p>
-        <a class="btn btn-light" href="#catalog">Explore the Collection</a>
+    <h1 class="visually-hidden">Janki Elegance — Premium Ethnic Wear</h1>
+
+    <section class="hero" aria-label="Featured collections" aria-roledescription="carousel">
+      <div class="hero-slider" id="heroSlider">
+        <article class="slide is-active" style="background-image:url('/images/slide-1.svg')">
+          <div class="slide-content">
+            <p class="hero-eyebrow">New Collection</p>
+            <h2 class="hero-title">Timeless elegance,<br /><em>redefined</em></h2>
+            <p class="hero-sub">Ethnic wear for every celebration.</p>
+            <a class="btn btn-light" href="#catalog">Shop Now</a>
+          </div>
+        </article>
+        <article class="slide" style="background-image:url('/images/slide-2.svg')">
+          <div class="slide-content">
+            <p class="hero-eyebrow">Festive Edit</p>
+            <h2 class="hero-title">Celebrate<br /><em>in colour</em></h2>
+            <p class="hero-sub">Lehengas &amp; suits for the season.</p>
+            <a class="btn btn-light" href="#catalog">Explore</a>
+          </div>
+        </article>
+        <article class="slide" style="background-image:url('/images/slide-3.svg')">
+          <div class="slide-content">
+            <p class="hero-eyebrow">Everyday Grace</p>
+            <h2 class="hero-title">Effortless<br /><em>daily wear</em></h2>
+            <p class="hero-sub">Cotton kurtis &amp; co-ord sets.</p>
+            <a class="btn btn-light" href="#catalog">Shop Now</a>
+          </div>
+        </article>
+        <article class="slide" style="background-image:url('/images/slide-4.svg')">
+          <div class="slide-content">
+            <p class="hero-eyebrow">Handloom Heritage</p>
+            <h2 class="hero-title">Woven with<br /><em>tradition</em></h2>
+            <p class="hero-sub">Sarees &amp; Mekhela Sador.</p>
+            <a class="btn btn-light" href="#catalog">Discover</a>
+          </div>
+        </article>
+        <article class="slide" style="background-image:url('/images/slide-5.svg')">
+          <div class="slide-content">
+            <p class="hero-eyebrow">New Arrivals</p>
+            <h2 class="hero-title">Fresh drops,<br /><em>every season</em></h2>
+            <p class="hero-sub">Be the first to style them.</p>
+            <a class="btn btn-light" href="#catalog">Shop Now</a>
+          </div>
+        </article>
       </div>
+      <button class="slider-arrow prev" id="slidePrev" aria-label="Previous slide">&#8249;</button>
+      <button class="slider-arrow next" id="slideNext" aria-label="Next slide">&#8250;</button>
+      <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Choose slide"></div>
     </section>
 
     <section class="catalog-section" id="catalog">
@@ -69,7 +123,7 @@
       <div class="footer-contact">
         <p>Order & enquiries</p>
         <a id="footerWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp us</a>
-        <a href="https://instagram.com/janakielegance" target="_blank" rel="noopener">@janakielegance</a>
+        <a href="https://www.instagram.com/janki.elegance/" target="_blank" rel="noopener">@janki.elegance</a>
       </div>
     </div>
     <p class="copyright">© <span id="year"></span> Janki Elegance. All rights reserved.</p>
