@@ -1,242 +1,418 @@
 {
   "products": [
     {
+      "sold_out": false,
+      "price": 2499,
       "name": "Rang-E-Malka Premium Farsi Set",
-      "category": "3 Piece Suits",
-      "price": 2499,
+      "featured": true,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
       "compare_at_price": 3299,
-      "image": "/images/placeholder-1.svg",
-      "images": ["/images/placeholder-1.svg", "/images/placeholder-2.svg", "/images/placeholder-3.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.8,
+      "images": [
+        "/images/placeholder-1.svg",
+        "/images/placeholder-2.svg",
+        "/images/placeholder-3.svg"
+      ],
       "reviews": 42,
+      "image": "/images/placeholder-1.svg",
       "description": "Premium farsi suit set with intricate detailing. Soft, breathable and festive-ready. Includes top, bottom and dupatta.",
-      "sold_out": false,
-      "featured": true
+      "rating": 4.8,
+      "category": "3 Piece Suits"
     },
     {
-      "name": "Banarasi Silk Saree — Maroon",
-      "category": "Sarees",
+      "sold_out": false,
       "price": 3299,
+      "name": "Banarasi Silk Saree — Maroon",
+      "featured": true,
+      "sizes": [
+        "Free Size"
+      ],
       "compare_at_price": 4199,
-      "image": "/images/placeholder-4.svg",
-      "images": ["/images/placeholder-4.svg", "/images/placeholder-1.svg", "/images/placeholder-6.svg"],
-      "sizes": ["Free Size"],
-      "rating": 4.9,
+      "images": [
+        "/images/placeholder-4.svg",
+        "/images/placeholder-1.svg",
+        "/images/placeholder-6.svg"
+      ],
       "reviews": 58,
+      "image": "/images/placeholder-4.svg",
       "description": "Handwoven Banarasi silk saree with a rich gold zari border. Comes with an unstitched blouse piece.",
-      "sold_out": false,
-      "featured": true
+      "rating": 4.9,
+      "category": "Sarees"
     },
     {
-      "name": "Hand-Block Cotton Kurti",
-      "category": "Cotton Kurtis",
+      "sold_out": false,
       "price": 899,
+      "name": "Hand-Block Cotton Kurti",
+      "featured": false,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
       "compare_at_price": 1199,
-      "image": "/images/placeholder-3.svg",
-      "images": ["/images/placeholder-3.svg", "/images/placeholder-5.svg", "/images/placeholder-2.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.6,
+      "images": [
+        "/images/placeholder-3.svg",
+        "/images/placeholder-5.svg",
+        "/images/placeholder-2.svg"
+      ],
       "reviews": 31,
+      "image": "/images/placeholder-3.svg",
       "description": "Breathable pure-cotton kurti with a traditional hand-block print. Everyday elegance.",
-      "sold_out": false,
-      "featured": false
+      "rating": 4.6,
+      "category": "Cotton Kurtis"
     },
     {
+      "sold_out": false,
+      "price": 500,
       "name": "Floral Co-ord Set",
-      "category": "Co-ord Sets",
-      "price": 1599,
+      "featured": false,
+      "sizes": [
+        "M",
+        "L"
+      ],
       "compare_at_price": 1999,
-      "image": "/images/placeholder-2.svg",
-      "images": ["/images/placeholder-2.svg", "/images/placeholder-4.svg", "/images/placeholder-1.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.7,
+      "images": [
+        "/images/uploads/1000292440.jpg"
+      ],
       "reviews": 27,
+      "image": "/images/uploads/1000292442.jpg",
       "description": "Coordinated top and bottom in a soft floral print. Relaxed fit, all-day comfort.",
-      "sold_out": false,
-      "featured": false
+      "rating": 4.7,
+      "category": "Co-ord Sets"
     },
     {
+      "sold_out": false,
+      "price": 2499,
       "name": "Kalamkari Farsi Suit Set",
-      "category": "Co-ord Sets",
-      "price": 2499,
+      "featured": false,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
       "compare_at_price": 4999,
-      "image": "/images/placeholder-5.svg",
-      "images": ["/images/placeholder-5.svg", "/images/placeholder-3.svg", "/images/placeholder-6.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.8,
+      "images": [
+        "/images/placeholder-5.svg",
+        "/images/placeholder-3.svg",
+        "/images/placeholder-6.svg"
+      ],
       "reviews": 36,
+      "image": "/images/placeholder-5.svg",
       "description": "Kalamkari-inspired farsi suit set with delicate prints. Includes top, palazzo and dupatta.",
-      "sold_out": false,
-      "featured": false
+      "rating": 4.8,
+      "category": "Co-ord Sets"
     },
     {
-      "name": "Pink Embroidery Farsi Co-ord Set",
-      "category": "Co-ord Sets",
+      "sold_out": false,
       "price": 1999,
+      "name": "Pink Embroidery Farsi Co-ord Set",
+      "featured": true,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
       "compare_at_price": 5999,
-      "image": "/images/placeholder-4.svg",
-      "images": ["/images/placeholder-4.svg", "/images/placeholder-1.svg", "/images/placeholder-2.svg", "/images/placeholder-5.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.9,
+      "images": [
+        "/images/placeholder-4.svg",
+        "/images/placeholder-1.svg",
+        "/images/placeholder-2.svg",
+        "/images/placeholder-5.svg"
+      ],
       "reviews": 29,
+      "image": "/images/placeholder-4.svg",
       "description": "Beautiful modal cotton embroidery farsi suit. A statement co-ord for festive days.",
-      "sold_out": false,
-      "featured": true
-    },
-    {
-      "name": "Persian Blue Farsi Co-ord Set",
-      "category": "Co-ord Sets",
-      "price": 2499,
-      "compare_at_price": 4899,
-      "image": "/images/placeholder-6.svg",
-      "images": ["/images/placeholder-6.svg", "/images/placeholder-3.svg", "/images/placeholder-2.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.7,
-      "reviews": 34,
-      "description": "Persian blue farsi co-ord set with soft floral prints. Includes top, palazzo and dupatta.",
-      "sold_out": false,
-      "featured": false
-    },
-    {
-      "name": "Lahriya Suit Set",
-      "category": "Co-ord Sets",
-      "price": 2499,
-      "compare_at_price": 4899,
-      "image": "/images/placeholder-4.svg",
-      "images": ["/images/placeholder-4.svg", "/images/placeholder-1.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.6,
-      "reviews": 19,
-      "description": "Lahriya-print suit set in a flowing silhouette. Festive-ready and easy to style.",
-      "sold_out": false,
-      "featured": false
-    },
-    {
-      "name": "Chikankari Farsi Co-ord Set",
-      "category": "Co-ord Sets",
-      "price": 1899,
-      "compare_at_price": 3999,
-      "image": "/images/placeholder-3.svg",
-      "images": ["/images/placeholder-3.svg", "/images/placeholder-5.svg", "/images/placeholder-6.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.8,
-      "reviews": 41,
-      "description": "Delicate chikankari embroidery on a breathable co-ord set. Elegant for day or evening.",
-      "sold_out": false,
-      "featured": false
-    },
-    {
-      "name": "Festive Lehenga — Wine & Gold",
-      "category": "Lehengas",
-      "price": 5999,
-      "compare_at_price": 7499,
-      "image": "/images/placeholder-1.svg",
-      "images": ["/images/placeholder-1.svg", "/images/placeholder-6.svg", "/images/placeholder-4.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
       "rating": 4.9,
-      "reviews": 47,
-      "description": "Flared festive lehenga with gold embroidery, matching choli and dupatta.",
+      "category": "Co-ord Sets"
+    },
+    {
       "sold_out": false,
-      "featured": true
-    },
-    {
-      "name": "Frock Kurti — Teal",
-      "category": "Frock Kurtis",
-      "price": 1099,
-      "compare_at_price": 1399,
-      "image": "/images/placeholder-3.svg",
-      "images": ["/images/placeholder-3.svg", "/images/placeholder-5.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.5,
-      "reviews": 18,
-      "description": "Flared frock-style kurti with a flattering silhouette and subtle thread work.",
-      "sold_out": false,
-      "featured": false
-    },
-    {
-      "name": "Palazzo Pants — Ivory",
-      "category": "Palazzo Pants",
-      "price": 699,
-      "compare_at_price": 899,
-      "image": "/images/placeholder-5.svg",
-      "images": ["/images/placeholder-5.svg", "/images/placeholder-2.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.4,
-      "reviews": 22,
-      "description": "Wide-leg palazzo pants in soft rayon. Pairs beautifully with kurtis and tops.",
-      "sold_out": false,
-      "featured": false
-    },
-    {
-      "name": "Assamese Mekhela Sador",
-      "category": "Mekhela Sador",
-      "price": 2799,
-      "compare_at_price": 3499,
-      "image": "/images/placeholder-2.svg",
-      "images": ["/images/placeholder-2.svg", "/images/placeholder-4.svg", "/images/placeholder-6.svg"],
-      "sizes": ["Free Size"],
-      "rating": 4.8,
-      "reviews": 33,
-      "description": "Traditional Mekhela Sador with woven motifs. A timeless drape for festive occasions.",
-      "sold_out": false,
-      "featured": true
-    },
-    {
-      "name": "Kids Ethnic Set",
-      "category": "Kids Wear",
-      "price": 1199,
-      "compare_at_price": 1499,
-      "image": "/images/placeholder-4.svg",
-      "images": ["/images/placeholder-4.svg", "/images/placeholder-3.svg"],
-      "sizes": ["2-3Y", "4-5Y", "6-7Y", "8-9Y"],
-      "rating": 4.7,
-      "reviews": 14,
-      "description": "Adorable festive ethnic set for kids. Soft fabric, easy to wear.",
-      "sold_out": true,
-      "featured": false
-    },
-    {
-      "name": "Kundan Jewellery Set",
-      "category": "Artificial Jewellery",
-      "price": 1299,
-      "compare_at_price": 1799,
-      "image": "/images/placeholder-1.svg",
-      "images": ["/images/placeholder-1.svg", "/images/placeholder-6.svg"],
-      "sizes": ["Free Size"],
-      "rating": 4.6,
-      "reviews": 25,
-      "description": "Statement kundan necklace set with matching earrings. Lightweight and elegant.",
-      "sold_out": false,
-      "featured": false
-    },
-    {
-      "name": "Indo-Western Draped Gown",
-      "category": "Indo-Western",
-      "price": 3499,
-      "compare_at_price": 4499,
+      "price": 2499,
+      "name": "Persian Blue Farsi Co-ord Set",
+      "featured": false,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
+      "compare_at_price": 4899,
+      "images": [
+        "/images/placeholder-6.svg",
+        "/images/placeholder-3.svg",
+        "/images/placeholder-2.svg"
+      ],
+      "reviews": 34,
       "image": "/images/placeholder-6.svg",
-      "images": ["/images/placeholder-6.svg", "/images/placeholder-1.svg", "/images/placeholder-5.svg"],
-      "sizes": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      "rating": 4.8,
-      "reviews": 21,
-      "description": "Contemporary indo-western draped gown that blends tradition with modern style.",
-      "sold_out": false,
-      "featured": true
+      "description": "Persian blue farsi co-ord set with soft floral prints. Includes top, palazzo and dupatta.",
+      "rating": 4.7,
+      "category": "Co-ord Sets"
     },
     {
-      "name": "Unstitched Suit Fabric — 3 pc",
-      "category": "Suit Fabric",
-      "price": 1399,
-      "compare_at_price": 1799,
-      "image": "/images/placeholder-5.svg",
-      "images": ["/images/placeholder-5.svg", "/images/placeholder-3.svg"],
-      "sizes": ["Unstitched"],
-      "rating": 4.5,
-      "reviews": 12,
-      "description": "Unstitched 3-piece suit fabric set: top, bottom and dupatta. Ready to tailor.",
       "sold_out": false,
-      "featured": false
+      "price": 2499,
+      "name": "Lahriya Suit Set",
+      "featured": false,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
+      "compare_at_price": 4899,
+      "images": [
+        "/images/placeholder-4.svg",
+        "/images/placeholder-1.svg"
+      ],
+      "reviews": 19,
+      "image": "/images/placeholder-4.svg",
+      "description": "Lahriya-print suit set in a flowing silhouette. Festive-ready and easy to style.",
+      "rating": 4.6,
+      "category": "Co-ord Sets"
+    },
+    {
+      "sold_out": false,
+      "price": 1899,
+      "name": "Chikankari Farsi Co-ord Set",
+      "featured": false,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
+      "compare_at_price": 3999,
+      "images": [
+        "/images/placeholder-3.svg",
+        "/images/placeholder-5.svg",
+        "/images/placeholder-6.svg"
+      ],
+      "reviews": 41,
+      "image": "/images/placeholder-3.svg",
+      "description": "Delicate chikankari embroidery on a breathable co-ord set. Elegant for day or evening.",
+      "rating": 4.8,
+      "category": "Co-ord Sets"
+    },
+    {
+      "sold_out": false,
+      "price": 5999,
+      "name": "Festive Lehenga — Wine & Gold",
+      "featured": true,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
+      "compare_at_price": 7499,
+      "images": [
+        "/images/placeholder-1.svg",
+        "/images/placeholder-6.svg",
+        "/images/placeholder-4.svg"
+      ],
+      "reviews": 47,
+      "image": "/images/placeholder-1.svg",
+      "description": "Flared festive lehenga with gold embroidery, matching choli and dupatta.",
+      "rating": 4.9,
+      "category": "Lehengas"
+    },
+    {
+      "sold_out": false,
+      "price": 1099,
+      "name": "Frock Kurti — Teal",
+      "featured": false,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
+      "compare_at_price": 1399,
+      "images": [
+        "/images/placeholder-3.svg",
+        "/images/placeholder-5.svg"
+      ],
+      "reviews": 18,
+      "image": "/images/placeholder-3.svg",
+      "description": "Flared frock-style kurti with a flattering silhouette and subtle thread work.",
+      "rating": 4.5,
+      "category": "Frock Kurtis"
+    },
+    {
+      "sold_out": false,
+      "price": 699,
+      "name": "Palazzo Pants — Ivory",
+      "featured": false,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
+      "compare_at_price": 899,
+      "images": [
+        "/images/placeholder-5.svg",
+        "/images/placeholder-2.svg"
+      ],
+      "reviews": 22,
+      "image": "/images/placeholder-5.svg",
+      "description": "Wide-leg palazzo pants in soft rayon. Pairs beautifully with kurtis and tops.",
+      "rating": 4.4,
+      "category": "Palazzo Pants"
+    },
+    {
+      "sold_out": false,
+      "price": 2799,
+      "name": "Assamese Mekhela Sador",
+      "featured": true,
+      "sizes": [
+        "Free Size"
+      ],
+      "compare_at_price": 3499,
+      "images": [
+        "/images/placeholder-2.svg",
+        "/images/placeholder-4.svg",
+        "/images/placeholder-6.svg"
+      ],
+      "reviews": 33,
+      "image": "/images/placeholder-2.svg",
+      "description": "Traditional Mekhela Sador with woven motifs. A timeless drape for festive occasions.",
+      "rating": 4.8,
+      "category": "Mekhela Sador"
+    },
+    {
+      "sold_out": true,
+      "price": 1199,
+      "name": "Kids Ethnic Set",
+      "featured": false,
+      "sizes": [
+        "2-3Y",
+        "4-5Y",
+        "6-7Y",
+        "8-9Y"
+      ],
+      "compare_at_price": 1499,
+      "images": [
+        "/images/placeholder-4.svg",
+        "/images/placeholder-3.svg"
+      ],
+      "reviews": 14,
+      "image": "/images/placeholder-4.svg",
+      "description": "Adorable festive ethnic set for kids. Soft fabric, easy to wear.",
+      "rating": 4.7,
+      "category": "Kids Wear"
+    },
+    {
+      "sold_out": false,
+      "price": 1299,
+      "name": "Kundan Jewellery Set",
+      "featured": false,
+      "sizes": [
+        "Free Size"
+      ],
+      "compare_at_price": 1799,
+      "images": [
+        "/images/placeholder-1.svg",
+        "/images/placeholder-6.svg"
+      ],
+      "reviews": 25,
+      "image": "/images/placeholder-1.svg",
+      "description": "Statement kundan necklace set with matching earrings. Lightweight and elegant.",
+      "rating": 4.6,
+      "category": "Artificial Jewellery"
+    },
+    {
+      "sold_out": false,
+      "price": 3499,
+      "name": "Indo-Western Draped Gown",
+      "featured": true,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
+      "compare_at_price": 4499,
+      "images": [
+        "/images/placeholder-6.svg",
+        "/images/placeholder-1.svg",
+        "/images/placeholder-5.svg"
+      ],
+      "reviews": 21,
+      "image": "/images/placeholder-6.svg",
+      "description": "Contemporary indo-western draped gown that blends tradition with modern style.",
+      "rating": 4.8,
+      "category": "Indo-Western"
+    },
+    {
+      "sold_out": false,
+      "price": 1399,
+      "name": "Unstitched Suit Fabric — 3 pc",
+      "featured": false,
+      "sizes": [
+        "Unstitched"
+      ],
+      "compare_at_price": 1799,
+      "images": [
+        "/images/placeholder-5.svg",
+        "/images/placeholder-3.svg"
+      ],
+      "reviews": 12,
+      "image": "/images/placeholder-5.svg",
+      "description": "Unstitched 3-piece suit fabric set: top, bottom and dupatta. Ready to tailor.",
+      "rating": 4.5,
+      "category": "Suit Fabric"
     }
   ]
 }
