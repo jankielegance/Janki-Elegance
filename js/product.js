@@ -134,6 +134,13 @@ function renderProduct(p) {
             ${soldOut ? "Enquire on WhatsApp" : "Buy on WhatsApp"}
           </a>
           <a class="btn btn-ig" href="${INSTAGRAM_URL}" target="_blank" rel="noopener">Message on Instagram</a>
+          <button class="btn-share" id="shareBtn" type="button" aria-label="Share this product">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line>
+            </svg>
+            Share
+          </button>
         </div>
 
         <div class="pd-desc">
@@ -145,7 +152,47 @@ function renderProduct(p) {
 
   wireGallery();
   wireSizes(p);
+  wireShare(p);
   document.getElementById("sizeChartBtn").addEventListener("click", openModal);
+}
+
+/* Share: native share sheet on mobile, copy-link + toast as fallback */
+function wireShare(p) {
+  const btn = document.getElementById("shareBtn");
+  if (!btn) return;
+  const shareData = {
+    title: p.name,
+    text: `Check out "${p.name}" from Janki Elegance`,
+    url: location.href,
+  };
+  btn.addEventListener("click", async () => {
+    if (navigator.share) {
+      try { await navigator.share(shareData); return; }
+      catch (e) { if (e && e.name === "AbortError") return; /* else fall through to copy */ }
+    }
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      showToast("Link copied — paste it anywhere to share!");
+    } catch (e) {
+      window.prompt("Copy this link to share:", shareData.url);
+    }
+  });
+}
+
+let toastTimer = null;
+function showToast(msg) {
+  let t = document.getElementById("toast");
+  if (!t) {
+    t = document.createElement("div");
+    t.id = "toast";
+    t.className = "toast";
+    t.setAttribute("role", "status");
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
 }
 
 function wireGallery() {

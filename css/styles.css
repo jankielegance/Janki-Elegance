@@ -415,6 +415,27 @@ em { font-style: italic; }
 .btn-ig { background: transparent; color: var(--wine); border: 1px solid var(--wine); width: 100%; text-align: center; }
 .btn-ig:hover { background: var(--wine); color: var(--ivory); }
 .pd-wa { width: 100%; text-align: center; }
+.btn-share {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  width: 100%; background: transparent; border: 1px solid var(--line); color: var(--espresso);
+  font-family: "Jost", sans-serif; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.75rem 1.8rem; border-radius: var(--radius); cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-share:hover { border-color: var(--gold); color: var(--wine); }
+
+/* Toast (copy-link confirmation) */
+.toast {
+  position: fixed; left: 50%; bottom: 28px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--espresso); color: var(--ivory);
+  padding: 0.8rem 1.3rem; border-radius: 999px;
+  font-size: 0.9rem; box-shadow: var(--shadow);
+  opacity: 0; pointer-events: none; z-index: 200;
+  max-width: 90vw; text-align: center;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 .pd-desc { border-top: 1px solid var(--line); padding-top: 1.6rem; }
 .pd-desc h2 { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; color: var(--wine); margin: 0 0 0.6rem; }
