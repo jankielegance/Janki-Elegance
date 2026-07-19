@@ -67,8 +67,17 @@ function starsHtml(rating) {
   return s;
 }
 
+function galleryImages(p) {
+  // Lead with the Main photo, then the gallery photos, de-duplicated.
+  const list = [];
+  if (p.image) list.push(p.image);
+  if (Array.isArray(p.images)) list.push(...p.images);
+  const deduped = [...new Set(list.filter(Boolean))];
+  return deduped.length ? deduped : ["/images/placeholder-1.svg"];
+}
+
 function renderProduct(p) {
-  const images = Array.isArray(p.images) && p.images.length ? p.images : [p.image || "/images/placeholder-1.svg"];
+  const images = galleryImages(p);
   const sizes = Array.isArray(p.sizes) && p.sizes.length ? p.sizes : STANDARD_SIZES;
   const onSale = p.compare_at_price && Number(p.compare_at_price) > Number(p.price);
   const pct = onSale ? Math.round((1 - Number(p.price) / Number(p.compare_at_price)) * 100) : 0;

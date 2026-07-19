@@ -104,6 +104,51 @@ Netlify removes every auth feature, this login keeps working.
 
 ---
 
+## ⚠️ Managing the catalog safely (read before editing code!)
+
+**`content/products.json` is the live catalog, and it is edited in the CMS.**
+When the owner adds/edits/removes a product in `/admin`, Decap commits that change
+**directly to the `main` branch**. So `main` always holds the real, current catalog.
+
+This creates one trap: if a **code branch** also contains its own copy of
+`content/products.json`, merging that branch into `main` will **overwrite the
+owner's live catalog** and silently delete products they added via the admin.
+(This is exactly how a test product once disappeared.)
+
+To stay safe, follow these rules:
+
+1. **The catalog on `main` is the single source of truth.** Add, edit, and delete
+   products **only** through `/admin`. Those commits are always safe — a normal
+   deploy never removes them.
+2. **Code branches must not modify `content/products.json`.** The site code already
+   fills in sensible defaults for any missing fields (sizes, gallery, rating), so
+   there's never a need to hand-edit this file in a feature branch.
+3. **Before merging any code branch into `main`, keep `main`'s catalog.** If a branch
+   somehow shows `content/products.json` as changed, discard the branch's copy first:
+   ```bash
+   # run this on the feature branch, before merging
+   git checkout main -- content/products.json
+   ```
+   This throws away the branch's version and keeps the owner's live catalog.
+
+> **In short:** owners manage products in `/admin`; developers never touch
+> `content/products.json`. Deploying `main` only *serves* the catalog — it never
+> deletes it. Data is only lost when a stale branch copy overwrites `main`.
+
+### Recovering a lost product
+Because every CMS save is a git commit, nothing is ever truly gone. To find and
+restore a product that was overwritten:
+```bash
+# list every commit that changed the catalog
+git log --oneline --all -- content/products.json
+# view the catalog as it was at a given commit
+git show <commit>:content/products.json
+```
+Copy the product entry from the older version back into the current
+`content/products.json` (or just re-add it via `/admin`).
+
+---
+
 ## 👀 Preview it locally before deploying
 
 The site loads the catalog with `fetch()`, so opening `index.html` directly as a file won't work — run a tiny local server instead:

@@ -31,7 +31,9 @@ function slugify(s) {
   return String(s || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 }
 function firstImage(p) {
-  return (Array.isArray(p.images) && p.images[0]) || p.image || "/images/placeholder-1.svg";
+  // Card/front-page image = the Main photo. Only fall back to the first
+  // gallery photo when no Main photo was set.
+  return p.image || (Array.isArray(p.images) && p.images[0]) || "/images/placeholder-1.svg";
 }
 function productHref(p) {
   return `product.html?p=${encodeURIComponent(slugify(p.name))}`;
