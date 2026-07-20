@@ -424,6 +424,28 @@ em { font-style: italic; }
 }
 .btn-share:hover { border-color: var(--gold); color: var(--wine); }
 
+/* "Also available on" marketplace links */
+.pd-marketplaces { display: flex; flex-direction: column; }
+.btn-marketplaces {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  width: 100%; background: var(--ivory-2); color: var(--wine); border: 1px solid var(--line);
+  font-family: "Jost", sans-serif; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.75rem 1.8rem; border-radius: var(--radius); cursor: pointer;
+  transition: border-color 0.2s;
+}
+.btn-marketplaces:hover { border-color: var(--gold); }
+.mp-chevron { transition: transform 0.2s; }
+.btn-marketplaces.open .mp-chevron { transform: rotate(180deg); }
+.mp-panel { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.6rem; }
+.mp-panel[hidden] { display: none; }
+.mp-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.75rem 1rem; border: 1px solid var(--line); border-radius: var(--radius);
+  color: var(--espresso); font-size: 0.92rem; letter-spacing: 0.02em;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.mp-link:hover { border-color: var(--gold); color: var(--wine); background: var(--ivory-2); }
+
 /* Toast (copy-link confirmation) */
 .toast {
   position: fixed; left: 50%; bottom: 28px;
