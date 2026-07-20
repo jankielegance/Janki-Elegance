@@ -82,6 +82,8 @@ function renderProduct(p) {
   const onSale = p.compare_at_price && Number(p.compare_at_price) > Number(p.price);
   const pct = onSale ? Math.round((1 - Number(p.price) / Number(p.compare_at_price)) * 100) : 0;
   const soldOut = !!p.sold_out;
+  // Marketplace / other-platform listings (Myntra, Meesho, Flipkart…). Only valid entries with a URL.
+  const links = Array.isArray(p.marketplaces) ? p.marketplaces.filter((m) => m && m.url) : [];
 
   const root = document.getElementById("productRoot");
   root.innerHTML = `
@@ -141,6 +143,20 @@ function renderProduct(p) {
             </svg>
             Share
           </button>
+          ${links.length ? `
+          <div class="pd-marketplaces">
+            <button class="btn-marketplaces" id="mpBtn" type="button" aria-expanded="false" aria-controls="mpPanel">
+              <span>Also available on</span>
+              <svg class="mp-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="mp-panel" id="mpPanel" hidden>
+              ${links.map((m) => `
+                <a class="mp-link" href="${escapeHtml(m.url)}" target="_blank" rel="noopener">
+                  <span>${escapeHtml(m.platform || "View listing")}</span>
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg>
+                </a>`).join("")}
+            </div>
+          </div>` : ""}
         </div>
 
         <div class="pd-desc">
@@ -153,7 +169,21 @@ function renderProduct(p) {
   wireGallery();
   wireSizes(p);
   wireShare(p);
+  wireMarketplaces();
   document.getElementById("sizeChartBtn").addEventListener("click", openModal);
+}
+
+/* "Also available on" — toggle the panel of marketplace links */
+function wireMarketplaces() {
+  const btn = document.getElementById("mpBtn");
+  const panel = document.getElementById("mpPanel");
+  if (!btn || !panel) return;
+  btn.addEventListener("click", () => {
+    const open = panel.hidden;
+    panel.hidden = !open;
+    btn.setAttribute("aria-expanded", String(open));
+    btn.classList.toggle("open", open);
+  });
 }
 
 /* Share: native share sheet on mobile, copy-link + toast as fallback */

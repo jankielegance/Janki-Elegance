@@ -74,5 +74,18 @@ collections:
               - { name: "rating", label: "Rating (0–5) — optional", widget: "number", value_type: "float", min: 0, max: 5, step: 0.1, required: false }
               - { name: "reviews", label: "Number of reviews — optional", widget: "number", value_type: "int", min: 0, required: false }
               - { name: "description", label: "Description", widget: "text", required: false }
+              - name: "marketplaces"
+                label: "Also available on (Myntra / Meesho / Flipkart …)"
+                widget: "list"
+                required: false
+                label_singular: "Platform link"
+                summary: "{{fields.platform}}"
+                hint: "Add links to this product on other platforms. If you leave this empty, the 'Also available on' button won't appear on the product page."
+                fields:
+                  - name: "platform"
+                    label: "Platform"
+                    widget: "select"
+                    options: ["Myntra", "Meesho", "Flipkart", "Amazon", "Ajio", "Nykaa", "Snapdeal", "Website", "Instagram", "Facebook", "Other"]
+                  - { name: "url", label: "Link (URL)", widget: "string", hint: "Paste the full link, e.g. https://www.myntra.com/..." }
               - { name: "sold_out", label: "Sold out?", widget: "boolean", default: false, required: false }
               - { name: "featured", label: "Featured?", widget: "boolean", default: false, required: false }
