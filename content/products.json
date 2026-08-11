@@ -177,29 +177,22 @@
     },
     {
       "sold_out": false,
-      "price": 2499,
-      "name": "Lahriya Suit Set",
+      "price": 600,
+      "name": "Bandhani Suit Set",
       "featured": false,
       "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL"
+        "L"
       ],
-      "compare_at_price": 4899,
+      "compare_at_price": 1200,
       "images": [
-        "/images/placeholder-4.svg",
-        "/images/placeholder-1.svg"
+        "/images/uploads/1000306574.png",
+        "/images/uploads/1000306575.png"
       ],
       "reviews": 19,
-      "image": "/images/placeholder-4.svg",
-      "description": "Lahriya-print suit set in a flowing silhouette. Festive-ready and easy to style.",
+      "image": "/images/uploads/1000306574.png",
+      "description": "Bandhni-print suit set in a flowing silhouette. Festive-ready and easy to style.",
       "rating": 4.6,
-      "category": "Co-ord Sets"
+      "category": "3 Piece Suits"
     },
     {
       "sold_out": false,
