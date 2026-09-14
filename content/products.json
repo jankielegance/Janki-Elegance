@@ -2,33 +2,6 @@
   "products": [
     {
       "sold_out": false,
-      "price": 2499,
-      "name": "Rang-E-Malka Premium Farsi Set",
-      "featured": true,
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL"
-      ],
-      "compare_at_price": 3299,
-      "images": [
-        "/images/placeholder-1.svg",
-        "/images/placeholder-2.svg",
-        "/images/placeholder-3.svg"
-      ],
-      "reviews": 42,
-      "image": "/images/placeholder-1.svg",
-      "description": "Premium farsi suit set with intricate detailing. Soft, breathable and festive-ready. Includes top, bottom and dupatta.",
-      "rating": 4.8,
-      "category": "3 Piece Suits"
-    },
-    {
-      "sold_out": false,
       "price": 3299,
       "name": "Banarasi Silk Saree — Maroon",
       "featured": true,
