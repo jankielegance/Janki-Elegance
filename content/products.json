@@ -68,88 +68,6 @@
     },
     {
       "sold_out": false,
-      "price": 2499,
-      "name": "Kalamkari Farsi Suit Set",
-      "featured": false,
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL"
-      ],
-      "compare_at_price": 4999,
-      "images": [
-        "/images/placeholder-5.svg",
-        "/images/placeholder-3.svg",
-        "/images/placeholder-6.svg"
-      ],
-      "reviews": 36,
-      "image": "/images/placeholder-5.svg",
-      "description": "Kalamkari-inspired farsi suit set with delicate prints. Includes top, palazzo and dupatta.",
-      "rating": 4.8,
-      "category": "Co-ord Sets"
-    },
-    {
-      "sold_out": false,
-      "price": 1999,
-      "name": "Pink Embroidery Farsi Co-ord Set",
-      "featured": true,
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL"
-      ],
-      "compare_at_price": 5999,
-      "images": [
-        "/images/placeholder-4.svg",
-        "/images/placeholder-1.svg",
-        "/images/placeholder-2.svg",
-        "/images/placeholder-5.svg"
-      ],
-      "reviews": 29,
-      "image": "/images/placeholder-4.svg",
-      "description": "Beautiful modal cotton embroidery farsi suit. A statement co-ord for festive days.",
-      "rating": 4.9,
-      "category": "Co-ord Sets"
-    },
-    {
-      "sold_out": false,
-      "price": 2499,
-      "name": "Persian Blue Farsi Co-ord Set",
-      "featured": false,
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL"
-      ],
-      "compare_at_price": 4899,
-      "images": [
-        "/images/placeholder-6.svg",
-        "/images/placeholder-3.svg",
-        "/images/placeholder-2.svg"
-      ],
-      "reviews": 34,
-      "image": "/images/placeholder-6.svg",
-      "description": "Persian blue farsi co-ord set with soft floral prints. Includes top, palazzo and dupatta.",
-      "rating": 4.7,
-      "category": "Co-ord Sets"
-    },
-    {
-      "sold_out": false,
       "price": 600,
       "name": "Bandhani Suit Set",
       "featured": false,
@@ -166,33 +84,6 @@
       "description": "Bandhni-print suit set in a flowing silhouette. Festive-ready and easy to style.",
       "rating": 4.6,
       "category": "3 Piece Suits"
-    },
-    {
-      "sold_out": false,
-      "price": 1899,
-      "name": "Chikankari Farsi Co-ord Set",
-      "featured": false,
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL"
-      ],
-      "compare_at_price": 3999,
-      "images": [
-        "/images/placeholder-3.svg",
-        "/images/placeholder-5.svg",
-        "/images/placeholder-6.svg"
-      ],
-      "reviews": 41,
-      "image": "/images/placeholder-3.svg",
-      "description": "Delicate chikankari embroidery on a breathable co-ord set. Elegant for day or evening.",
-      "rating": 4.8,
-      "category": "Co-ord Sets"
     },
     {
       "sold_out": false,
