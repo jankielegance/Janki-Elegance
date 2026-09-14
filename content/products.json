@@ -406,6 +406,23 @@
       "description": "Unstitched 3-piece suit fabric set: top, bottom and dupatta. Ready to tailor.",
       "rating": 4.5,
       "category": "Suit Fabric"
+    },
+    {
+      "sold_out": false,
+      "price": 1200,
+      "name": "3 Piece Party Wear Suit",
+      "featured": false,
+      "sizes": [
+        "3XL"
+      ],
+      "compare_at_price": 2000,
+      "images": [
+        "/images/uploads/20260914_150743.heic",
+        "/images/uploads/20260914_150949.heic",
+        "/images/uploads/20260914_150748.heic"
+      ],
+      "image": "/images/uploads/20260914_150941.heic",
+      "category": "3 Piece Suits"
     }
   ]
 }
