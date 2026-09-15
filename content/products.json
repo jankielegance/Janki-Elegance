@@ -309,18 +309,62 @@
       "category": "3 Piece Suits"
     },
     {
+      "sold_out": false,
+      "price": 900,
+      "name": "Elegant Suit Set",
+      "featured": false,
       "sizes": [
-        "XS",
-        "S",
-        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "compare_at_price": 1800,
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-15-at-18.32.25.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-18.32.25-1-.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-18.32.24-1-.jpeg"
+      ],
+      "image": "/images/uploads/whatsapp-image-2026-09-15-at-18.32.24.jpeg",
+      "category": "3 Piece Suits"
+    },
+    {
+      "sold_out": false,
+      "price": 1200,
+      "name": "Roman glass silk suit set",
+      "featured": false,
+      "sizes": [
         "L",
         "XL",
         "2XL",
-        "3XL",
-        "4XL"
+        "M"
       ],
+      "compare_at_price": 1999,
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.04.10.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.04.10-1-.jpeg"
+      ],
+      "image": "/images/uploads/whatsapp-image-2026-09-15-at-19.04.09.jpeg",
+      "category": "3 Piece Suits"
+    },
+    {
       "sold_out": false,
-      "featured": false
+      "price": 899,
+      "name": "Occasion Wear Set",
+      "featured": false,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "compare_at_price": 1597,
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.07.51.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.07.50.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.07.55.jpeg"
+      ],
+      "image": "/images/uploads/whatsapp-image-2026-09-15-at-19.08.15.jpeg",
+      "category": "3 Piece Suits"
     }
   ]
 }
