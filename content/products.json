@@ -287,6 +287,39 @@
       ],
       "image": "/images/uploads/whatsapp-image-2026-09-15-at-12.23.21-am-1-.jpeg",
       "category": "3 Piece Suits"
+    },
+    {
+      "sold_out": false,
+      "price": 1100,
+      "name": "elegant suit set",
+      "featured": false,
+      "sizes": [
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "compare_at_price": 1800,
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-15-at-18.32.25.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-18.32.25-1-.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-18.32.24-1-.jpeg"
+      ],
+      "image": "/images/uploads/whatsapp-image-2026-09-15-at-18.32.24.jpeg",
+      "category": "3 Piece Suits"
+    },
+    {
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
+      "sold_out": false,
+      "featured": false
     }
   ]
 }
