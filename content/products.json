@@ -290,21 +290,22 @@
     },
     {
       "sold_out": false,
-      "price": 900,
-      "name": "Elegant Suit Set",
+      "price": 980,
+      "name": "Fancy ethnic set",
       "featured": false,
       "sizes": [
+        "M",
         "L",
         "XL",
         "2XL"
       ],
-      "compare_at_price": 1800,
+      "compare_at_price": 1900,
       "images": [
-        "/images/uploads/whatsapp-image-2026-09-15-at-18.32.25.jpeg",
-        "/images/uploads/whatsapp-image-2026-09-15-at-18.32.25-1-.jpeg",
-        "/images/uploads/whatsapp-image-2026-09-15-at-18.32.24-1-.jpeg"
+        "/images/uploads/whatsapp-image-2026-09-15-at-18.51.48.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-18.51.39-1-.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-18.51.48-1-.jpeg"
       ],
-      "image": "/images/uploads/whatsapp-image-2026-09-15-at-18.32.24.jpeg",
+      "image": "/images/uploads/whatsapp-image-2026-09-15-at-18.51.39.jpeg",
       "category": "3 Piece Suits"
     },
     {
