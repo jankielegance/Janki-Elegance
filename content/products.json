@@ -365,6 +365,46 @@
       ],
       "image": "/images/uploads/whatsapp-image-2026-09-15-at-19.08.15.jpeg",
       "category": "3 Piece Suits"
+    },
+    {
+      "sold_out": false,
+      "price": 999,
+      "name": "Statement suit set with digital print dupatta",
+      "featured": false,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "compare_at_price": 1800,
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.14.03-1-.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.14.04.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.14.04-1-.jpeg"
+      ],
+      "image": "/images/uploads/whatsapp-image-2026-09-15-at-19.14.03.jpeg",
+      "category": "3 Piece Suits"
+    },
+    {
+      "sold_out": false,
+      "price": 900,
+      "name": "Roman glass silk set",
+      "featured": false,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "compare_at_price": 1600,
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.20.33.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.20.06.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-15-at-19.20.05.jpeg"
+      ],
+      "image": "/images/uploads/whatsapp-image-2026-09-15-at-19.21.16.jpeg",
+      "category": "3 Piece Suits"
     }
   ]
 }
