@@ -405,6 +405,56 @@
       ],
       "image": "/images/uploads/whatsapp-image-2026-09-15-at-19.21.16.jpeg",
       "category": "3 Piece Suits"
+    },
+    {
+      "sizes": null,
+      "sold_out": false,
+      "featured": false,
+      "name": "Tissu Sarees",
+      "category": "Sarees",
+      "image": "/images/uploads/whatsapp-image-2026-09-21-at-19.05.27.jpeg",
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.05.33.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.05.34.jpeg"
+      ]
+    },
+    {
+      "sizes": null,
+      "sold_out": false,
+      "featured": false,
+      "name": "Silk saree",
+      "category": "Sarees",
+      "image": "/images/uploads/whatsapp-image-2026-09-21-at-19.20.38.jpeg",
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.20.39.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.20.42.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.32.40-1-.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.32.42.jpeg"
+      ]
+    },
+    {
+      "sizes": null,
+      "sold_out": false,
+      "featured": false,
+      "name": "Silk Saree",
+      "category": "Sarees",
+      "image": "/images/uploads/whatsapp-image-2026-09-21-at-19.27.09-1-.jpeg",
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.27.09.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.27.08-1-.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.27.08.jpeg"
+      ]
+    },
+    {
+      "sizes": null,
+      "sold_out": false,
+      "featured": false,
+      "name": "Silk saree",
+      "category": "Sarees",
+      "image": "/images/uploads/whatsapp-image-2026-09-21-at-19.32.39.jpeg",
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-21-at-19.32.40.jpeg"
+      ]
     }
   ]
 }
