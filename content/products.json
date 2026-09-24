@@ -2,53 +2,6 @@
   "products": [
     {
       "sold_out": false,
-      "price": 3299,
-      "name": "Banarasi Silk Saree — Maroon",
-      "featured": true,
-      "sizes": [
-        "Free Size"
-      ],
-      "compare_at_price": 4199,
-      "images": [
-        "/images/placeholder-4.svg",
-        "/images/placeholder-1.svg",
-        "/images/placeholder-6.svg"
-      ],
-      "reviews": 58,
-      "image": "/images/placeholder-4.svg",
-      "description": "Handwoven Banarasi silk saree with a rich gold zari border. Comes with an unstitched blouse piece.",
-      "rating": 4.9,
-      "category": "Sarees"
-    },
-    {
-      "sold_out": false,
-      "price": 899,
-      "name": "Hand-Block Cotton Kurti",
-      "featured": false,
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL"
-      ],
-      "compare_at_price": 1199,
-      "images": [
-        "/images/placeholder-3.svg",
-        "/images/placeholder-5.svg",
-        "/images/placeholder-2.svg"
-      ],
-      "reviews": 31,
-      "image": "/images/placeholder-3.svg",
-      "description": "Breathable pure-cotton kurti with a traditional hand-block print. Everyday elegance.",
-      "rating": 4.6,
-      "category": "Cotton Kurtis"
-    },
-    {
-      "sold_out": false,
       "price": 489,
       "name": "Floral Co-ord Set",
       "featured": false,
@@ -454,6 +407,56 @@
       "image": "/images/uploads/whatsapp-image-2026-09-21-at-19.32.39.jpeg",
       "images": [
         "/images/uploads/whatsapp-image-2026-09-21-at-19.32.40.jpeg"
+      ]
+    },
+    {
+      "sizes": null,
+      "sold_out": false,
+      "featured": false,
+      "name": "Silk Saree",
+      "category": "Sarees",
+      "image": "/images/uploads/whatsapp-image-2026-09-24-at-19.03.32.jpeg",
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.03.50.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.03.51.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.03.51-1-.jpeg"
+      ]
+    },
+    {
+      "sizes": null,
+      "sold_out": false,
+      "featured": false,
+      "name": "Masoor Silk saree",
+      "category": "Sarees",
+      "image": "/images/uploads/whatsapp-image-2026-09-24-at-19.07.49.jpeg",
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.07.58.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.07.59.jpeg"
+      ]
+    },
+    {
+      "sizes": null,
+      "sold_out": false,
+      "featured": false,
+      "name": "Masoor silk saree",
+      "category": "Sarees",
+      "image": "/images/uploads/whatsapp-image-2026-09-24-at-19.11.24.jpeg",
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.11.24-1-.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.11.22.jpeg"
+      ]
+    },
+    {
+      "sizes": null,
+      "sold_out": false,
+      "featured": false,
+      "name": "Bengali Silk saree ",
+      "category": "Sarees",
+      "images": [
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.14.19.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.14.20.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.14.19-1-.jpeg",
+        "/images/uploads/whatsapp-image-2026-09-24-at-19.14.52.jpeg"
       ]
     }
   ]
