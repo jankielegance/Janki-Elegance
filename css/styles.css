@@ -9,7 +9,10 @@
   --muted: #7A6E60;
   --line: #E5DAC6;
   --radius: 4px;
-  --maxw: 1240px;
+  --maxw: 1600px;
+  /* Side margin shared by header, page content and footer so they all line up:
+     20px on phones, growing to 56px on wide screens. */
+  --edge: clamp(1.25rem, 4vw, 3.5rem);
   --shadow: 0 10px 30px rgba(43, 33, 24, 0.08);
 }
 
@@ -51,13 +54,15 @@ em { font-style: italic; }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
+/* Header, page content and footer share one edge margin, so the logo, the page
+   content and the footer all start at the same line near the screen edge. */
 .header-inner {
   max-width: var(--maxw);
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding: 0.9rem 1.5rem;
+  padding: 0.9rem var(--edge);
 }
 .brand { display: flex; align-items: center; gap: 0.6rem; margin-right: auto; }
 .brand-mark {
@@ -125,7 +130,7 @@ em { font-style: italic; }
 .search-bar-inner {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0.7rem 1.5rem;
+  padding: 0.7rem var(--edge);
   display: flex; align-items: center; gap: 0.8rem;
 }
 .search-bar-icon { color: var(--muted); flex: none; }
@@ -221,7 +226,7 @@ em { font-style: italic; }
 .btn-wine:hover { background: var(--wine-deep); }
 
 /* Catalog */
-.catalog-section { max-width: var(--maxw); margin: 0 auto; padding: 4.5rem 1.5rem 5rem; }
+.catalog-section { max-width: var(--maxw); margin: 0 auto; padding: 4.5rem var(--edge) 5rem; }
 .section-head { text-align: center; margin-bottom: 2.2rem; }
 .section-eyebrow { text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.76rem; color: var(--gold); margin: 0 0 0.4rem; }
 .section-title { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--wine); }
@@ -318,7 +323,7 @@ em { font-style: italic; }
 .footer-inner {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 3.5rem 1.5rem 2rem;
+  padding: 3.5rem var(--edge) 2rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -327,6 +332,7 @@ em { font-style: italic; }
 .site-footer .brand-mark { border-color: var(--gold-soft); color: var(--gold-soft); }
 .footer-name { font-family: "Cormorant Garamond", serif; font-size: 1.6rem; margin: 0.6rem 0 0.3rem; color: #fff; }
 .footer-tag { color: rgba(255,255,255,0.7); max-width: 30ch; margin: 0; font-size: 0.92rem; }
+.footer-contact { text-align: right; }
 .footer-contact p { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.74rem; color: var(--gold-soft); margin: 0 0 0.7rem; }
 .footer-contact a { display: block; margin-bottom: 0.4rem; color: var(--ivory-2); transition: color 0.2s; }
 .footer-contact a:hover { color: #fff; }
@@ -346,12 +352,13 @@ em { font-style: italic; }
     border-bottom: 1px solid var(--line);
     flex-direction: column;
     gap: 0;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem var(--edge);
     display: none;
   }
   .main-nav.open { display: flex; }
   .main-nav a { padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
   .ig-link { display: none; }
+  .footer-contact { text-align: left; }
   .slider-arrow { display: none; }
   .hero-title { font-size: clamp(2rem, 8vw, 2.9rem); }
 }
@@ -363,7 +370,7 @@ em { font-style: italic; }
 /* ============================================================
    Product detail page
    ============================================================ */
-.product-page { max-width: var(--maxw); margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+.product-page { max-width: var(--maxw); margin: 0 auto; padding: 1.5rem var(--edge) 4rem; }
 .pd-loading { padding: 4rem 0; text-align: center; color: var(--muted); }
 
 .breadcrumb { font-size: 0.82rem; color: var(--muted); margin: 0.5rem 0 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
@@ -384,6 +391,64 @@ em { font-style: italic; }
 .pd-slide { flex: 0 0 100%; height: 100%; scroll-snap-align: center; scroll-snap-stop: always; }
 .pd-slide img, .pd-slide video { width: 100%; height: 100%; object-fit: contain; display: block; }
 .pd-main .badge { z-index: 2; }
+.pd-slide img { cursor: zoom-in; }
+
+/* Full-screen photo viewer */
+.lb {
+  position: fixed; inset: 0; z-index: 200;
+  background: #0d0a08;
+  display: flex; flex-direction: column;
+}
+.lb[hidden] { display: none; }
+.lb-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.6rem 0.6rem 0.6rem 1.1rem; color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem; letter-spacing: 0.04em;
+  flex: none;
+}
+.lb-close {
+  width: 44px; height: 44px; border: none; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12); color: #fff;
+  font-size: 1.9rem; line-height: 1; cursor: pointer;
+}
+.lb-close:hover { background: rgba(255, 255, 255, 0.24); }
+.lb-track {
+  flex: 1; min-height: 0;
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; overscroll-behavior: contain;
+}
+.lb-track::-webkit-scrollbar { display: none; }
+.lb-zoomed .lb-track { overflow: hidden; }
+.lb-slide {
+  flex: 0 0 100%; height: 100%; overflow: hidden;
+  scroll-snap-align: center; scroll-snap-stop: always;
+}
+.lb-slide img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+  /* horizontal swipes go to the photo strip; pinches and drags are handled in JS */
+  touch-action: pan-x;
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+.lb-zoomed .lb-slide img { touch-action: none; cursor: zoom-out; transition: none; }
+.lb-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.35); color: #fff;
+  font-size: 2rem; line-height: 1; cursor: pointer;
+}
+.lb-arrow:hover { background: rgba(0, 0, 0, 0.6); }
+.lb-arrow.prev { left: 16px; }
+.lb-arrow.next { right: 16px; }
+.lb-zoomed .lb-arrow, .lb-zoomed .lb-hint { opacity: 0; pointer-events: none; }
+.lb-hint {
+  flex: none; margin: 0; padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+  text-align: center; color: rgba(255, 255, 255, 0.55); font-size: 0.8rem;
+  transition: opacity 0.2s;
+}
+@media (hover: none) { .lb-arrow { display: none; } }
 .pd-dots {
   position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
   display: flex; gap: 6px; z-index: 2; pointer-events: none;
