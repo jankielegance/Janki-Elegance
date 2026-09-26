@@ -50,46 +50,16 @@
 
     <section class="hero" aria-label="Featured collections" aria-roledescription="carousel">
       <div class="hero-slider" id="heroSlider">
-        <article class="slide is-active" style="background-image:url('/images/slide-1.svg')">
-          <div class="slide-content">
-            <p class="hero-eyebrow">New Collection</p>
-            <h2 class="hero-title">Timeless elegance,<br /><em>redefined</em></h2>
-            <p class="hero-sub">Ethnic wear for every celebration.</p>
-            <a class="btn btn-light" href="#catalog">Shop Now</a>
-          </div>
-        </article>
-        <article class="slide" style="background-image:url('/images/slide-2.svg')">
-          <div class="slide-content">
-            <p class="hero-eyebrow">Festive Edit</p>
-            <h2 class="hero-title">Celebrate<br /><em>in colour</em></h2>
-            <p class="hero-sub">Lehengas &amp; suits for the season.</p>
-            <a class="btn btn-light" href="#catalog">Explore</a>
-          </div>
-        </article>
-        <article class="slide" style="background-image:url('/images/slide-3.svg')">
-          <div class="slide-content">
-            <p class="hero-eyebrow">Everyday Grace</p>
-            <h2 class="hero-title">Effortless<br /><em>daily wear</em></h2>
-            <p class="hero-sub">Cotton kurtis &amp; co-ord sets.</p>
-            <a class="btn btn-light" href="#catalog">Shop Now</a>
-          </div>
-        </article>
-        <article class="slide" style="background-image:url('/images/slide-4.svg')">
-          <div class="slide-content">
-            <p class="hero-eyebrow">Handloom Heritage</p>
-            <h2 class="hero-title">Woven with<br /><em>tradition</em></h2>
-            <p class="hero-sub">Sarees &amp; Mekhela Sador.</p>
-            <a class="btn btn-light" href="#catalog">Discover</a>
-          </div>
-        </article>
-        <article class="slide" style="background-image:url('/images/slide-5.svg')">
-          <div class="slide-content">
-            <p class="hero-eyebrow">New Arrivals</p>
-            <h2 class="hero-title">Fresh drops,<br /><em>every season</em></h2>
-            <p class="hero-sub">Be the first to style them.</p>
-            <a class="btn btn-light" href="#catalog">Shop Now</a>
-          </div>
-        </article>
+        <!-- Poster banners: text & "Shop Now" are part of the image, so the whole slide is a link. -->
+        <a class="slide is-active" href="#catalog" aria-label="Double Reverie — shop the Festive and Summer collections">
+          <img src="/images/banners/double-reverie.jpg" alt="Double Reverie — newly curated Festive and Summer collections by Janki Elegance" width="1280" height="714" />
+        </a>
+        <a class="slide" href="#catalog" aria-label="Festive Reverie — shop refined comforts">
+          <img src="/images/banners/festive-reverie.jpg" alt="Festive Reverie, Refined Comforts — curated looks for every occasion" width="1280" height="714" />
+        </a>
+        <a class="slide" href="#catalog" aria-label="Summer Reverie — shop elegant comforts">
+          <img src="/images/banners/summer-reverie.jpg" alt="Summer Reverie, Elegant Comforts — premium comfort in curated new arrivals" width="1280" height="714" />
+        </a>
       </div>
       <button class="slider-arrow prev" id="slidePrev" aria-label="Previous slide">&#8249;</button>
       <button class="slider-arrow next" id="slideNext" aria-label="Next slide">&#8250;</button>
