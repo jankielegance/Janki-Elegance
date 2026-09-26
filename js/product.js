@@ -76,8 +76,32 @@ function galleryImages(p) {
   return deduped.length ? deduped : ["/images/placeholder-1.svg"];
 }
 
+function galleryMedia(p) {
+  // Photos first, then any product videos.
+  const media = galleryImages(p).map((src) => ({ type: "image", src }));
+  if (Array.isArray(p.videos)) {
+    [...new Set(p.videos.filter(Boolean))].forEach((src) => media.push({ type: "video", src }));
+  }
+  return media;
+}
+
+function mainMediaHtml(item, alt) {
+  if (item.type === "video") {
+    return `<video id="pdMain" src="${escapeHtml(item.src)}" controls playsinline preload="metadata"></video>`;
+  }
+  return `<img id="pdMain" src="${escapeHtml(item.src)}" alt="${escapeHtml(alt)}" />`;
+}
+
+function thumbMediaHtml(item) {
+  if (item.type === "video") {
+    // "#t=0.1" makes mobile browsers show the first frame as a preview.
+    return `<video src="${escapeHtml(item.src)}#t=0.1" muted playsinline preload="metadata"></video><span class="pd-play" aria-hidden="true">▶</span>`;
+  }
+  return `<img src="${escapeHtml(item.src)}" alt="" />`;
+}
+
 function renderProduct(p) {
-  const images = galleryImages(p);
+  const media = galleryMedia(p);
   const sizes = Array.isArray(p.sizes) && p.sizes.length ? p.sizes : STANDARD_SIZES;
   const onSale = p.compare_at_price && Number(p.compare_at_price) > Number(p.price);
   const pct = onSale ? Math.round((1 - Number(p.price) / Number(p.compare_at_price)) * 100) : 0;
@@ -95,12 +119,12 @@ function renderProduct(p) {
       <div class="pd-gallery">
         <div class="pd-main">
           ${soldOut ? '<span class="badge soldout">Sold Out</span>' : (onSale ? `<span class="badge">-${pct}%</span>` : "")}
-          <img id="pdMain" src="${escapeHtml(images[0])}" alt="${escapeHtml(p.name)}" />
+          ${mainMediaHtml(media[0], p.name)}
         </div>
         <div class="pd-thumbs" id="pdThumbs">
-          ${images.map((src, i) => `
-            <button class="pd-thumb${i === 0 ? " active" : ""}" data-src="${escapeHtml(src)}" aria-label="View image ${i + 1}">
-              <img src="${escapeHtml(src)}" alt="" />
+          ${media.map((item, i) => `
+            <button class="pd-thumb${i === 0 ? " active" : ""}" data-index="${i}" aria-label="View ${item.type === "video" ? "video" : "image"} ${i + 1}">
+              ${thumbMediaHtml(item)}
             </button>`).join("")}
         </div>
       </div>
@@ -150,7 +174,7 @@ function renderProduct(p) {
       </div>
     </div>`;
 
-  wireGallery();
+  wireGallery(media, p.name);
   wireSizes(p);
   wireShare(p);
   document.getElementById("sizeChartBtn").addEventListener("click", openModal);
@@ -195,13 +219,13 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
 }
 
-function wireGallery() {
-  const main = document.getElementById("pdMain");
+function wireGallery(media, name) {
   document.querySelectorAll("#pdThumbs .pd-thumb").forEach((btn) => {
     btn.addEventListener("click", () => {
       document.querySelectorAll("#pdThumbs .pd-thumb").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-      main.src = btn.dataset.src;
+      // Swap the whole element so switching away from a video stops its playback.
+      document.getElementById("pdMain").outerHTML = mainMediaHtml(media[Number(btn.dataset.index)], name);
     });
   });
 }

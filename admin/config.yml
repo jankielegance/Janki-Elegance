@@ -64,6 +64,12 @@ collections:
                 required: false
                 field: { name: "photo", label: "Photo", widget: "image" }
                 hint: "Add multiple photos shown on the product detail page. The first one is used as the main image if the field above is empty."
+              - name: "videos"
+                label: "Product videos (product page)"
+                widget: "list"
+                required: false
+                field: { name: "video", label: "Video", widget: "file" }
+                hint: "Optional. Upload MP4 videos (keep each under ~25 MB — short clips of 10–30 seconds work best). They appear after the photos in the product page gallery."
               - name: "sizes"
                 label: "Available sizes"
                 widget: "select"
