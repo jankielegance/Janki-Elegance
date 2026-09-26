@@ -2,7 +2,7 @@
    Janki Elegance — storefront config
    WhatsApp number: country code + number, no "+" or spaces.
    ============================================================ */
-const WHATSAPP_NUMBER = "6002674720";          // 6002674720
+const WHATSAPP_NUMBER = "916002674720";        // country code (91) + number, no "+" or spaces
 const INSTAGRAM_HANDLE = "janki.elegance";     // instagram.com/janki.elegance
 
 /* Canonical category order. Must match content/products.json + admin/config.yml. */
@@ -25,6 +25,8 @@ const CATEGORIES = [
 const PREVIEW_COUNT = 4;
 
 const rupee = (n) => "₹" + Number(n).toLocaleString("en-IN");
+// Products saved without a price (empty in the admin) show no price line.
+const hasPrice = (p) => Number(p.price) > 0;
 const plural = (n) => `${n} product${n === 1 ? "" : "s"}`;
 
 function slugify(s) {
@@ -35,8 +37,17 @@ function firstImage(p) {
   // gallery photo when no Main photo was set.
   return p.image || (Array.isArray(p.images) && p.images[0]) || "/images/placeholder-1.svg";
 }
+// Each product's link = its name + a short code from its main photo, e.g.
+// "silk-saree-k3x9qa". Products can share a name (four "Silk saree"s) but
+// never a photo, so every product gets its own link.
+function productSlug(p) {
+  const key = p.image || (Array.isArray(p.images) && p.images[0]) || p.description || "";
+  let h = 5381;
+  for (let i = 0; i < key.length; i++) h = ((h * 33) ^ key.charCodeAt(i)) >>> 0;
+  return `${slugify(p.name)}-${h.toString(36)}`;
+}
 function productHref(p) {
-  return `product.html?p=${encodeURIComponent(slugify(p.name))}`;
+  return `product.html?p=${encodeURIComponent(productSlug(p))}`;
 }
 function whatsappLink(productName) {
   const msg = productName
@@ -76,7 +87,7 @@ function productCardEl(p, i) {
   a.href = productHref(p);
   a.style.animationDelay = (i % 8) * 0.05 + "s";
 
-  const onSale = p.compare_at_price && Number(p.compare_at_price) > Number(p.price);
+  const onSale = hasPrice(p) && p.compare_at_price && Number(p.compare_at_price) > Number(p.price);
   const soldOut = !!p.sold_out;
   const pct = onSale ? Math.round((1 - Number(p.price) / Number(p.compare_at_price)) * 100) : 0;
 
@@ -87,10 +98,11 @@ function productCardEl(p, i) {
     </div>
     <div class="product-info">
       <h3 class="product-name">${escapeHtml(p.name)}</h3>
+      ${hasPrice(p) ? `
       <div class="product-price">
         <span class="price-now">${rupee(p.price)}</span>
         ${onSale ? `<span class="price-was">${rupee(p.compare_at_price)}</span>` : ""}
-      </div>
+      </div>` : ""}
     </div>`;
   requestAnimationFrame(() => a.classList.add("in"));
   return a;
