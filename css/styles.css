@@ -384,6 +384,64 @@ em { font-style: italic; }
 .pd-slide { flex: 0 0 100%; height: 100%; scroll-snap-align: center; scroll-snap-stop: always; }
 .pd-slide img, .pd-slide video { width: 100%; height: 100%; object-fit: contain; display: block; }
 .pd-main .badge { z-index: 2; }
+.pd-slide img { cursor: zoom-in; }
+
+/* Full-screen photo viewer */
+.lb {
+  position: fixed; inset: 0; z-index: 200;
+  background: #0d0a08;
+  display: flex; flex-direction: column;
+}
+.lb[hidden] { display: none; }
+.lb-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.6rem 0.6rem 0.6rem 1.1rem; color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem; letter-spacing: 0.04em;
+  flex: none;
+}
+.lb-close {
+  width: 44px; height: 44px; border: none; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12); color: #fff;
+  font-size: 1.9rem; line-height: 1; cursor: pointer;
+}
+.lb-close:hover { background: rgba(255, 255, 255, 0.24); }
+.lb-track {
+  flex: 1; min-height: 0;
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; overscroll-behavior: contain;
+}
+.lb-track::-webkit-scrollbar { display: none; }
+.lb-zoomed .lb-track { overflow: hidden; }
+.lb-slide {
+  flex: 0 0 100%; height: 100%; overflow: hidden;
+  scroll-snap-align: center; scroll-snap-stop: always;
+}
+.lb-slide img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+  /* horizontal swipes go to the photo strip; pinches and drags are handled in JS */
+  touch-action: pan-x;
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+.lb-zoomed .lb-slide img { touch-action: none; cursor: zoom-out; transition: none; }
+.lb-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.35); color: #fff;
+  font-size: 2rem; line-height: 1; cursor: pointer;
+}
+.lb-arrow:hover { background: rgba(0, 0, 0, 0.6); }
+.lb-arrow.prev { left: 16px; }
+.lb-arrow.next { right: 16px; }
+.lb-zoomed .lb-arrow, .lb-zoomed .lb-hint { opacity: 0; pointer-events: none; }
+.lb-hint {
+  flex: none; margin: 0; padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+  text-align: center; color: rgba(255, 255, 255, 0.55); font-size: 0.8rem;
+  transition: opacity 0.2s;
+}
+@media (hover: none) { .lb-arrow { display: none; } }
 .pd-dots {
   position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
   display: flex; gap: 6px; z-index: 2; pointer-events: none;

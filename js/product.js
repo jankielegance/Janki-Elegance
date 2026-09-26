@@ -205,6 +205,7 @@ function renderProduct(p) {
     </div>`;
 
   wireGallery();
+  wireLightbox(media, p.name);
   wireSizes(p);
   wireShare(p);
   document.getElementById("sizeChartBtn").addEventListener("click", openModal);
@@ -304,6 +305,221 @@ function wireSizes(p) {
   });
 }
 
+/* ============================================================
+   Full-screen photo viewer (tap a gallery photo to open)
+   Swipe between photos, pinch / double-tap to zoom and drag to look
+   around. Closes with ✕, Esc, or the phone's Back button.
+   ============================================================ */
+const LB_MAX_ZOOM = 4;
+const LB_TAP_ZOOM = 2.5;
+
+function wireLightbox(media, name) {
+  // Only photos go in the viewer; videos keep their own player controls.
+  const photos = [];
+  const photoIndexOf = {};
+  media.forEach((m, i) => {
+    if (m.type !== "image") return;
+    photoIndexOf[i] = photos.length;
+    photos.push(m.src);
+  });
+  if (!photos.length) return;
+
+  const lb = document.createElement("div");
+  lb.className = "lb";
+  lb.hidden = true;
+  lb.setAttribute("role", "dialog");
+  lb.setAttribute("aria-modal", "true");
+  lb.setAttribute("aria-label", "Photo viewer");
+  lb.innerHTML = `
+    <div class="lb-bar">
+      <span class="lb-count" aria-live="polite"></span>
+      <button class="lb-close" type="button" aria-label="Close photo viewer">&times;</button>
+    </div>
+    <div class="lb-track">
+      ${photos.map((src, i) => `
+        <div class="lb-slide"><img src="${escapeHtml(src)}" alt="${escapeHtml(name)} — photo ${i + 1}" draggable="false" loading="lazy" /></div>`).join("")}
+    </div>
+    ${photos.length > 1 ? `
+    <button class="lb-arrow prev" type="button" aria-label="Previous photo">&#8249;</button>
+    <button class="lb-arrow next" type="button" aria-label="Next photo">&#8250;</button>` : ""}
+    <p class="lb-hint">${matchMedia("(hover: none)").matches ? "Pinch or double-tap to zoom" : "Click to zoom · use ← → to browse"}</p>`;
+  document.body.appendChild(lb);
+
+  const track = lb.querySelector(".lb-track");
+  const imgs = [...lb.querySelectorAll(".lb-slide img")];
+  const count = lb.querySelector(".lb-count");
+  let index = 0;
+  let pushedHistory = false;
+
+  // ---- zoom state for the photo currently on screen ----
+  let scale = 1, tx = 0, ty = 0;
+
+  function apply() {
+    const img = imgs[index];
+    img.style.transform = scale > 1 ? `translate(${tx}px, ${ty}px) scale(${scale})` : "";
+    lb.classList.toggle("lb-zoomed", scale > 1);
+  }
+  function resetZoom() {
+    imgs[index].style.transform = "";
+    scale = 1; tx = 0; ty = 0;
+    lb.classList.remove("lb-zoomed");
+  }
+  // How far the zoomed photo may be dragged before its edge would leave the screen.
+  function limits() {
+    const img = imgs[index];
+    const boxW = img.clientWidth, boxH = img.clientHeight;
+    const fit = Math.min(boxW / (img.naturalWidth || boxW), boxH / (img.naturalHeight || boxH));
+    const w = (img.naturalWidth || boxW) * fit, h = (img.naturalHeight || boxH) * fit;
+    return { x: Math.max(0, (w * scale - boxW) / 2), y: Math.max(0, (h * scale - boxH) / 2) };
+  }
+  function clampPan() {
+    const m = limits();
+    tx = Math.min(m.x, Math.max(-m.x, tx));
+    ty = Math.min(m.y, Math.max(-m.y, ty));
+  }
+  // Point relative to the centre of the current photo's box.
+  function fromCentre(clientX, clientY) {
+    const r = imgs[index].getBoundingClientRect();
+    return { x: clientX - (r.left + r.width / 2), y: clientY - (r.top + r.height / 2) };
+  }
+  // Zoom to `next`, keeping the spot under point `p` fixed on screen.
+  function zoomAt(next, p) {
+    next = Math.min(LB_MAX_ZOOM, Math.max(1, next));
+    tx = p.x - (p.x - tx) * (next / scale);
+    ty = p.y - (p.y - ty) * (next / scale);
+    scale = next;
+    if (scale <= 1.01) { scale = 1; tx = 0; ty = 0; }
+    clampPan();
+    apply();
+  }
+
+  // ---- open / close ----
+  function goTo(i, smooth) {
+    track.scrollTo({ left: i * track.clientWidth, behavior: smooth ? "smooth" : "auto" });
+  }
+  function setIndex(i) {
+    if (i !== index) resetZoom();
+    index = i;
+    count.textContent = photos.length > 1 ? `${i + 1} / ${photos.length}` : "";
+  }
+  function open(i) {
+    lb.hidden = false;
+    document.body.style.overflow = "hidden";
+    setIndex(i);
+    goTo(i, false);
+    // A history entry lets the phone's Back button close the viewer instead of leaving the page.
+    history.pushState({ lightbox: true }, "");
+    pushedHistory = true;
+    lb.querySelector(".lb-close").focus({ preventScroll: true });
+  }
+  function hide() {
+    resetZoom();
+    lb.hidden = true;
+    document.body.style.overflow = "";
+  }
+  function close() {
+    if (lb.hidden) return;
+    if (pushedHistory) history.back(); // popstate below does the hiding
+    else hide();
+  }
+  window.addEventListener("popstate", () => {
+    pushedHistory = false;
+    if (!lb.hidden) hide();
+  });
+
+  lb.querySelector(".lb-close").addEventListener("click", close);
+  lb.querySelector(".lb-arrow.prev")?.addEventListener("click", () => goTo(Math.max(0, index - 1), true));
+  lb.querySelector(".lb-arrow.next")?.addEventListener("click", () => goTo(Math.min(photos.length - 1, index + 1), true));
+  document.addEventListener("keydown", (e) => {
+    if (lb.hidden) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowLeft") goTo(Math.max(0, index - 1), true);
+    else if (e.key === "ArrowRight") goTo(Math.min(photos.length - 1, index + 1), true);
+  });
+
+  let settle = null;
+  track.addEventListener("scroll", () => {
+    clearTimeout(settle);
+    settle = setTimeout(() => setIndex(Math.round(track.scrollLeft / track.clientWidth)), 80);
+  }, { passive: true });
+
+  // ---- touch: pinch to zoom, drag to pan when zoomed, double-tap to toggle ----
+  let pinch = null, pan = null, lastTap = 0, lastTouchEnd = 0, moved = false;
+  const dist = (a, b) => Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+  const mid = (a, b) => fromCentre((a.clientX + b.clientX) / 2, (a.clientY + b.clientY) / 2);
+
+  track.addEventListener("touchstart", (e) => {
+    moved = false;
+    if (e.touches.length === 2) {
+      pinch = { d: dist(e.touches[0], e.touches[1]), scale, p: mid(e.touches[0], e.touches[1]), tx, ty };
+      pan = null;
+    } else if (e.touches.length === 1 && scale > 1) {
+      pan = { x: e.touches[0].clientX, y: e.touches[0].clientY, tx, ty };
+    }
+  }, { passive: true });
+
+  track.addEventListener("touchmove", (e) => {
+    moved = true;
+    if (pinch && e.touches.length === 2) {
+      e.preventDefault();
+      const p = mid(e.touches[0], e.touches[1]);
+      const next = Math.min(LB_MAX_ZOOM, Math.max(1, pinch.scale * dist(e.touches[0], e.touches[1]) / pinch.d));
+      // Keep the spot between the fingers under the fingers while zooming and moving.
+      tx = p.x - (pinch.p.x - pinch.tx) * (next / pinch.scale);
+      ty = p.y - (pinch.p.y - pinch.ty) * (next / pinch.scale);
+      scale = next;
+      clampPan();
+      apply();
+    } else if (pan && e.touches.length === 1) {
+      e.preventDefault();
+      tx = pan.tx + (e.touches[0].clientX - pan.x);
+      ty = pan.ty + (e.touches[0].clientY - pan.y);
+      clampPan();
+      apply();
+    }
+  }, { passive: false });
+
+  track.addEventListener("touchend", (e) => {
+    lastTouchEnd = Date.now();
+    if (e.touches.length < 2) pinch = null;
+    if (e.touches.length === 0) pan = null;
+    if (scale <= 1.01 && scale !== 1) resetZoom();
+    // Double-tap: zoom in on the tapped spot, or back out if already zoomed.
+    if (!moved && e.changedTouches.length === 1 && e.touches.length === 0) {
+      const now = Date.now();
+      if (now - lastTap < 300) {
+        const t = e.changedTouches[0];
+        if (scale > 1) resetZoom(); else zoomAt(LB_TAP_ZOOM, fromCentre(t.clientX, t.clientY));
+        lastTap = 0;
+      } else {
+        lastTap = now;
+      }
+    }
+  });
+
+  // ---- mouse (laptop): click to zoom in/out, zoom follows the pointer ----
+  track.addEventListener("click", (e) => {
+    if (Date.now() - lastTouchEnd < 600 || e.target.tagName !== "IMG") return; // taps are handled above
+    if (scale > 1) resetZoom(); else zoomAt(LB_TAP_ZOOM, fromCentre(e.clientX, e.clientY));
+  });
+  track.addEventListener("mousemove", (e) => {
+    if (scale <= 1 || Date.now() - lastTouchEnd < 600) return;
+    const r = imgs[index].getBoundingClientRect();
+    const m = limits();
+    tx = -((e.clientX - r.left) / r.width * 2 - 1) * m.x;
+    ty = -((e.clientY - r.top) / r.height * 2 - 1) * m.y;
+    apply();
+  });
+
+  // ---- open from the product gallery ----
+  document.getElementById("pdTrack").addEventListener("click", (e) => {
+    const slide = e.target.closest(".pd-slide");
+    if (!slide || e.target.tagName !== "IMG") return;
+    const galleryIndex = [...slide.parentNode.children].indexOf(slide);
+    if (galleryIndex in photoIndexOf) open(photoIndexOf[galleryIndex]);
+  });
+}
+
 /* Size chart modal */
 function wireModal() {
   const modal = document.getElementById("sizeChartModal");
@@ -311,6 +527,11 @@ function wireModal() {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 }
 function openModal() { document.getElementById("sizeChartModal").hidden = false; document.body.style.overflow = "hidden"; }
-function closeModal() { document.getElementById("sizeChartModal").hidden = true; document.body.style.overflow = ""; }
+function closeModal() {
+  const modal = document.getElementById("sizeChartModal");
+  if (modal.hidden) return;
+  modal.hidden = true;
+  document.body.style.overflow = "";
+}
 
 document.addEventListener("DOMContentLoaded", init);
