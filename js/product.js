@@ -1,11 +1,13 @@
 /* ============================================================
    Janki Elegance — product detail page
    ============================================================ */
-const WHATSAPP_NUMBER = "6002674720";
+const WHATSAPP_NUMBER = "916002674720"; // country code (91) + number, no "+" or spaces
 const INSTAGRAM_URL = "https://www.instagram.com/janki.elegance/";
 const STANDARD_SIZES = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
 
 const rupee = (n) => "₹" + Number(n).toLocaleString("en-IN");
+// Products saved without a price (empty in the admin) show no price line.
+const hasPrice = (p) => Number(p.price) > 0;
 
 function slugify(s) {
   return String(s || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -17,10 +19,27 @@ function escapeHtml(str) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
+// Each product's link = its name + a short code from its main photo, e.g.
+// "silk-saree-k3x9qa". Products can share a name (four "Silk saree"s) but
+// never a photo, so every product gets its own link.
+function productSlug(p) {
+  const key = p.image || (Array.isArray(p.images) && p.images[0]) || p.description || "";
+  let h = 5381;
+  for (let i = 0; i < key.length; i++) h = ((h * 33) ^ key.charCodeAt(i)) >>> 0;
+  return `${slugify(p.name)}-${h.toString(36)}`;
+}
+function productUrl(p) {
+  return `${location.origin}/product.html?p=${encodeURIComponent(productSlug(p))}`;
+}
 function whatsappLink(name, size) {
+  if (!name) {
+    const general = "Hi Janki Elegance! I'd like to know more about your collection.";
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(general)}`;
+  }
   let msg = `Hi Janki Elegance! I'm interested in "${name}"`;
   if (size) msg += ` (Size: ${size})`;
   msg += ". Could you share more details?";
+  if (currentProduct) msg += `\n\n${productUrl(currentProduct)}`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
@@ -29,7 +48,7 @@ let currentProduct = null;
 
 async function init() {
   document.getElementById("year").textContent = new Date().getFullYear();
-  document.getElementById("footerWhatsapp").href = whatsappLink("your collection", "");
+  document.getElementById("footerWhatsapp").href = whatsappLink("", "");
   wireModal();
 
   const params = new URLSearchParams(location.search);
@@ -44,7 +63,10 @@ async function init() {
     console.error("Could not load products:", err);
   }
 
-  const product = products.find((p) => slugify(p.name) === slug);
+  // Exact match first; fall back to name-only links (e.g. "?p=silk-saree")
+  // that were shared before products had unique links.
+  const product = products.find((p) => productSlug(p) === slug)
+    || products.find((p) => slugify(p.name) === slug);
   if (!product) return renderNotFound();
   currentProduct = product;
   document.title = `${product.name} — Janki Elegance`;
@@ -85,11 +107,12 @@ function galleryMedia(p) {
   return media;
 }
 
-function mainMediaHtml(item, alt) {
+function slideMediaHtml(item, alt, i) {
   if (item.type === "video") {
-    return `<video id="pdMain" src="${escapeHtml(item.src)}" controls playsinline preload="metadata"></video>`;
+    return `<video src="${escapeHtml(item.src)}" controls playsinline preload="metadata"></video>`;
   }
-  return `<img id="pdMain" src="${escapeHtml(item.src)}" alt="${escapeHtml(alt)}" />`;
+  // Only the first photo loads right away; the rest load as they are swiped to.
+  return `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(alt)}"${i > 0 ? ' loading="lazy"' : ""} />`;
 }
 
 function thumbMediaHtml(item) {
@@ -103,7 +126,7 @@ function thumbMediaHtml(item) {
 function renderProduct(p) {
   const media = galleryMedia(p);
   const sizes = Array.isArray(p.sizes) && p.sizes.length ? p.sizes : STANDARD_SIZES;
-  const onSale = p.compare_at_price && Number(p.compare_at_price) > Number(p.price);
+  const onSale = hasPrice(p) && p.compare_at_price && Number(p.compare_at_price) > Number(p.price);
   const pct = onSale ? Math.round((1 - Number(p.price) / Number(p.compare_at_price)) * 100) : 0;
   const soldOut = !!p.sold_out;
 
@@ -119,7 +142,13 @@ function renderProduct(p) {
       <div class="pd-gallery">
         <div class="pd-main">
           ${soldOut ? '<span class="badge soldout">Sold Out</span>' : (onSale ? `<span class="badge">-${pct}%</span>` : "")}
-          ${mainMediaHtml(media[0], p.name)}
+          <div class="pd-track" id="pdTrack">
+            ${media.map((item, i) => `<div class="pd-slide">${slideMediaHtml(item, p.name, i)}</div>`).join("")}
+          </div>
+          ${media.length > 1 ? `
+          <div class="pd-dots" id="pdDots" aria-hidden="true">
+            ${media.map((_, i) => `<span class="pd-dot${i === 0 ? " active" : ""}"></span>`).join("")}
+          </div>` : ""}
         </div>
         <div class="pd-thumbs" id="pdThumbs">
           ${media.map((item, i) => `
@@ -138,10 +167,11 @@ function renderProduct(p) {
           <span class="pd-reviews">${Number(p.rating).toFixed(1)}${p.reviews ? ` · ${p.reviews} reviews` : ""}</span>
         </div>` : ""}
 
+        ${hasPrice(p) ? `
         <div class="pd-price">
           <span class="price-now">${rupee(p.price)}</span>
           ${onSale ? `<span class="price-was">${rupee(p.compare_at_price)}</span><span class="price-off">${pct}% off</span>` : ""}
-        </div>
+        </div>` : ""}
 
         <div class="pd-sizes">
           <div class="pd-sizes-head">
@@ -174,7 +204,7 @@ function renderProduct(p) {
       </div>
     </div>`;
 
-  wireGallery(media, p.name);
+  wireGallery();
   wireSizes(p);
   wireShare(p);
   document.getElementById("sizeChartBtn").addEventListener("click", openModal);
@@ -219,15 +249,38 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
 }
 
-function wireGallery(media, name) {
-  document.querySelectorAll("#pdThumbs .pd-thumb").forEach((btn) => {
+function wireGallery() {
+  // The main preview is a horizontal scroll-snap strip: swipe on phones,
+  // click a thumbnail on laptops. Both stay in sync via the scroll position.
+  const track = document.getElementById("pdTrack");
+  const thumbs = document.querySelectorAll("#pdThumbs .pd-thumb");
+  const dots = document.querySelectorAll("#pdDots .pd-dot");
+  let current = 0;
+
+  function setActive(idx) {
+    if (idx === current) return;
+    current = idx;
+    thumbs.forEach((b, i) => b.classList.toggle("active", i === idx));
+    dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+    // Stop any video that has been swiped away from.
+    track.querySelectorAll("video").forEach((v) => { if (!v.paused) v.pause(); });
+  }
+
+  thumbs.forEach((btn) => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll("#pdThumbs .pd-thumb").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      // Swap the whole element so switching away from a video stops its playback.
-      document.getElementById("pdMain").outerHTML = mainMediaHtml(media[Number(btn.dataset.index)], name);
+      const idx = Number(btn.dataset.index);
+      setActive(idx);
+      track.scrollTo({ left: idx * track.clientWidth, behavior: "smooth" });
     });
   });
+
+  // Only follow the scroll position once it settles, so a thumbnail click that
+  // smooth-scrolls past other photos doesn't flicker the highlight along the way.
+  let settle = null;
+  track.addEventListener("scroll", () => {
+    clearTimeout(settle);
+    settle = setTimeout(() => setActive(Math.round(track.scrollLeft / track.clientWidth)), 80);
+  }, { passive: true });
 }
 
 function wireSizes(p) {
